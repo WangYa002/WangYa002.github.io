@@ -1,30 +1,21 @@
-name: Deploy to GitHub Pages
+name: Deploy VitePress to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]  # 👈 改成你的分支 master
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest  # 👈 不动！GitHub 服务器用的，不用管
     steps:
-      - uses: actions/checkout@44c2b7a854eaa2917b516cd32f1a3afa8c0d14be
-      - uses: actions/setup-node@1e60f620b5540040260f696b1714e0cd5dd9236
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm install
       - run: npm run build
-      - uses: actions/upload-pages-artifact@56afc689d6040457cf68e355d4a1b9014dcebcfd
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          path: docs/.vitepress/dist
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/deploy-pages@d6db901649a34838c31ab04d73a8d5460dd2940e
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vitepress/dist  # 👈 不动！自动生成
