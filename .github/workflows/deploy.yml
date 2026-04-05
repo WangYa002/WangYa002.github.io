@@ -2,20 +2,57 @@ name: Deploy VitePress to GitHub Pages
 
 on:
   push:
-    branches: [ master ]  # 👈 改成你的分支 master
-  workflow_dispatch:
+    branches: [ master ]  # 监听 master 分支的推送
+  workflow_dispatch:      # 允许在网页端手动触发
+
+# 必须为工作流程赋予部署到 GitHub Pages 的权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 确保不会有两个部署任务同时进行
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest  # 👈 不动！GitHub 服务器用的，不用管
+  # 任务 1：构建阶段 (打包代码)
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取所有历史记录（为了 VitePress 的最后更新时间功能）
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with VitePress
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist  # 👈 不动！自动生成
+          # 👇 【核心关键点】请根据你的文件结构确认这里！
+          # 如果你的 index.md 放在 docs 文件夹里，这里填 docs/.vitepress/dist
+          # 如果你的 index.md 直接在根目录，请把这里改成 .vitepress/dist
+          path: docs/.vitepress/dist
+
+  # 任务 2：部署阶段 (把打包好的网页上传到服务器)
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build # 必须等待 build 任务完成后才执行
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
