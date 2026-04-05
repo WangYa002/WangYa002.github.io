@@ -20,25 +20,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
-        uses: actions/checkout@v4
-        
+        uses: actions/checkout@44c2b7a854eaa2917b516cd32f1a3afa8c0d14be
+      
       - name: 设置 Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@60ed5b76d1a225a86d56b60e209a3674ec17848
         with:
           node-version: 20
-          
+      
       - name: 安装依赖
         run: npm install
-        
+      
       - name: 构建博客
         run: npm run build
 
       - name: 上传构建产物
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56424ca0d0d47106528754f39d5d05e41136186
         with:
           path: docs/.vitepress/dist
 
-  # 官方部署任务
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -48,4 +47,4 @@ jobs:
     steps:
       - name: 部署到 GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@0d7da56ebf4eaf5b59f7299b95cce35286a956
