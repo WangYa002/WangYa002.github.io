@@ -5,7 +5,6 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
-# 官方权限配置
 permissions:
   contents: read
   pages: write
@@ -23,7 +22,7 @@ jobs:
         uses: actions/checkout@44c2b7a854eaa2917b516cd32f1a3afa8c0d14be
       
       - name: 设置 Node.js
-        uses: actions/setup-node@60ed5b76d1a225a86d56b60e209a3674ec17848
+        uses: actions/setup-node@1e60f620b5540040260f6596b1714e0cd5dd9236
         with:
           node-version: 20
       
@@ -34,7 +33,7 @@ jobs:
         run: npm run build
 
       - name: 上传构建产物
-        uses: actions/upload-pages-artifact@56424ca0d0d47106528754f39d5d05e41136186
+        uses: actions/upload-pages-artifact@56afc689d6040457cf68e355d4a1b9014dcebcfd
         with:
           path: docs/.vitepress/dist
 
@@ -47,4 +46,4 @@ jobs:
     steps:
       - name: 部署到 GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@0d7da56ebf4eaf5b59f7299b95cce35286a956
+        uses: actions/deploy-pages@d6db901649a34838c31ab04d73a8d5460dd2940e
