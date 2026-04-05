@@ -2,22 +2,21 @@ name: Deploy VitePress to GitHub Pages
 
 on:
   push:
-    branches: [ master ]  # 👈 改成你的分支 master
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
+      # 替换为固定SHA
+      - uses: actions/checkout@4dfc287e1df77d91a7a74d77b949931027d74d5f
+      - uses: actions/setup-node@0e45fe5d9e28e3ad03c66c0fe99ac9398c147d5c
         with:
           node-version: 20
       - run: npm install
       - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+      - uses: peaceiris/actions-gh-pages@ba2c54a4f8e6fdf1c5f984ff5ad67df96a5d9d3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
