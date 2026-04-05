@@ -1,4 +1,4 @@
-name: 部署博客到 GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -10,40 +10,21 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出代码
-        uses: actions/checkout@44c2b7a854eaa2917b516cd32f1a3afa8c0d14be
-      
-      - name: 设置 Node.js
-        uses: actions/setup-node@1e60f620b5540040260f6596b1714e0cd5dd9236
+      - uses: actions/checkout@44c2b7a854eaa2917b516cd32f1a3afa8c0d14be
+      - uses: actions/setup-node@1e60f620b5540040260f696b1714e0cd5dd9236
         with:
           node-version: 20
-      
-      - name: 安装依赖
-        run: npm install
-      
-      - name: 构建博客
-        run: npm run build
-
-      - name: 上传构建产物
-        uses: actions/upload-pages-artifact@56afc689d6040457cf68e355d4a1b9014dcebcfd
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@56afc689d6040457cf68e355d4a1b9014dcebcfd
         with:
           path: docs/.vitepress/dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: 部署到 GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@d6db901649a34838c31ab04d73a8d5460dd2940e
+      - uses: actions/deploy-pages@d6db901649a34838c31ab04d73a8d5460dd2940e
