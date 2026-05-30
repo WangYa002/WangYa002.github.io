@@ -2,57 +2,75 @@
    Organic Design Anchor - VitePress Blog
    ============================================ */
 
-/* CSS Variables - Organic Tokens */
+/* ============================================
+   VitePress CSS Variables Override - Organic Theme
+   ============================================ */
 :root {
-  /* Surface - Earth tones */
-  --surface-primary: #E8DCC7;      /* sand - main background */
-  --surface-secondary: #D4B895;   /* oat - cards */
-  --surface-muted: #C9B99A;       /* deeper earth */
+  /* Override VitePress brand colors with Organic palette */
+  --vp-c-brand-1: #C66B3D;       /* terracotta */
+  --vp-c-brand-2: #B08B6E;      /* clay */
+  --vp-c-brand-3: #D4B895;       /* oat */
+
+  /* Background */
+  --vp-c-bg: #E8DCC7;            /* sand */
+  --vp-c-bg-soft: #D4B895;      /* oat */
+  --vp-c-bg-mute: #C9B99A;       /* deeper earth */
 
   /* Text - Warm greys */
-  --text-primary: #2D2A26;        /* warm dark */
-  --text-secondary: #5C564E;      /* warm medium */
-  --text-tertiary: #8B8279;       /* warm light */
+  --vp-c-text-1: #2D2A26;        /* warm dark */
+  --vp-c-text-2: #5C564E;        /* warm medium */
+  --vp-c-text-3: #8B8279;        /* warm light */
 
-  /* Accent - Terracotta */
-  --accent-primary: #C66B3D;      /* terracotta */
-  --accent-secondary: #B08B6E;    /* clay */
-  --accent-moss: #606C38;         /* moss green */
+  /* Divider */
+  --vp-c-divider: #C9B99A;
+  --vp-c-border: #C9B99A;
 
-  /* Borders & Shadows */
+  /* Custom Organic tokens for direct use */
+  --surface-primary: #E8DCC7;
+  --surface-secondary: #D4B895;
+  --surface-muted: #C9B99A;
+  --accent-primary: #C66B3D;
+  --accent-secondary: #B08B6E;
+  --accent-moss: #606C38;
+  --text-primary: #2D2A26;
+  --text-secondary: #5C564E;
+  --text-tertiary: #8B8279;
   --border-color: #C9B99A;
-  --shadow-soft: 0 4px 20px rgba(45, 42, 38, 0.08);
-  --shadow-medium: 0 8px 30px rgba(45, 42, 38, 0.12);
-  --shadow-hard: 4px 4px 0 #C66B3D; /* Brutalist-style hard shadow for contrast */
-
-  /* Radius - Rounded corners 16-32px */
   --radius-sm: 16px;
   --radius-md: 24px;
   --radius-lg: 32px;
-
-  /* Navigation */
   --nav-bg: rgba(232, 220, 199, 0.85);
+
+  /* Home hero gradient */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #C66B3D 0%, #B08B6E 100%);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, #C66B3D 0%, #606C38 100%);
+  --vp-home-hero-image-filter: blur(30px);
 }
 
-/* Dark Mode - Still warm, not cold */
+/* Dark mode */
 .dark {
-  --surface-primary: #1F1C18;     /* warm dark */
-  --surface-secondary: #2A2620;   /* warm dark card */
-  --surface-muted: #3A352E;       /* warm dark muted */
-  --text-primary: #E8DCC7;        /* sand text */
-  --text-secondary: #C9B99A;       /* muted sand */
-  --text-tertiary: #8B8073;       /* warm grey */
+  --vp-c-bg: #1F1C18;
+  --vp-c-bg-soft: #2A2620;
+  --vp-c-bg-mute: #3A352E;
+  --vp-c-text-1: #E8DCC7;
+  --vp-c-text-2: #C9B99A;
+  --vp-c-text-3: #8B8073;
+  --vp-c-divider: #3A352E;
+  --vp-c-border: #3A352E;
+  --surface-primary: #1F1C18;
+  --surface-secondary: #2A2620;
+  --surface-muted: #3A352E;
+  --accent-primary: #C66B3D;
+  --accent-secondary: #B08B6E;
+  --accent-moss: #606C38;
+  --text-primary: #E8DCC7;
+  --text-secondary: #C9B99A;
+  --text-tertiary: #8B8073;
   --border-color: #3A352E;
   --nav-bg: rgba(31, 28, 24, 0.85);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
 
-/* ============================================
-   Grain Texture - SVG filter
-   ============================================ */
-.VPContent.has-sidebar {
-  position: relative;
+  --vp-home-hero-name-background: linear-gradient(135deg, #C66B3D 0%, #D4B895 100%);
 }
 
 /* ============================================
@@ -61,23 +79,23 @@
 .VPNavBar {
   background: var(--nav-bg) !important;
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color) !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
   transition: background 0.3s ease;
 }
 
 .VPNavBar .title {
   font-weight: 700;
-  color: var(--accent-primary) !important;
+  color: var(--vp-c-brand-1) !important;
   letter-spacing: -0.02em;
 }
 
 .VPNavBar a {
-  color: var(--text-primary) !important;
+  color: var(--vp-c-text-1) !important;
   transition: color 0.2s ease;
 }
 
 .VPNavBar a:hover {
-  color: var(--accent-primary) !important;
+  color: var(--vp-c-brand-1) !important;
 }
 
 /* ============================================
@@ -92,18 +110,25 @@
 }
 
 .VPHomeHero .name {
-  color: var(--accent-primary) !important;
+  color: var(--vp-c-brand-1) !important;
   font-weight: 800 !important;
   letter-spacing: -0.03em !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
 }
 
 .VPHomeHero .text {
-  color: var(--text-secondary) !important;
+  color: var(--vp-c-text-2) !important;
   font-weight: 500 !important;
 }
 
 .VPHomeHero .tagline {
-  color: var(--text-tertiary) !important;
+  color: var(--vp-c-text-3) !important;
+}
+
+.VPHomeHero .image-container img {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 8px 30px rgba(198, 107, 61, 0.2) !important;
 }
 
 /* ============================================
@@ -111,23 +136,23 @@
    ============================================ */
 .VPFeature {
   background: var(--surface-secondary) !important;
-  border: 1px solid var(--border-color) !important;
+  border: 1px solid var(--vp-c-border) !important;
   border-radius: var(--radius-md) !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: 0 4px 20px rgba(45, 42, 38, 0.08) !important;
   transition: all 0.3s ease !important;
   padding: 1.5rem !important;
 }
 
 .VPFeature:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-medium) !important;
-  border-color: var(--accent-primary) !important;
+  box-shadow: 0 8px 30px rgba(45, 42, 38, 0.12) !important;
+  border-color: var(--vp-c-brand-1) !important;
 }
 
 .VPFeature .icon {
   font-size: 2.5rem !important;
   margin-bottom: 0.75rem !important;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -136,14 +161,14 @@
 .VPFeature .title {
   font-size: 1.25rem !important;
   font-weight: 700 !important;
-  color: var(--text-primary) !important;
+  color: var(--vp-c-text-1) !important;
   margin-bottom: 0.5rem !important;
 }
 
 .VPFeature .details {
-  font-size: 0.95rem !important;
+  font-size: 1rem !important;
   line-height: 1.6 !important;
-  color: var(--text-secondary) !important;
+  color: var(--vp-c-text-2) !important;
 }
 
 /* ============================================
@@ -158,43 +183,27 @@
 }
 
 .VPButton.brand {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2)) !important;
   color: #fff !important;
   border: none !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: 0 4px 20px rgba(198, 107, 61, 0.25) !important;
 }
 
 .VPButton.brand:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-medium), 0 0 20px rgba(198, 107, 61, 0.3) !important;
+  box-shadow: 0 8px 30px rgba(198, 107, 61, 0.35) !important;
 }
 
 .VPButton.alt {
-  border: 2px solid var(--accent-primary) !important;
-  color: var(--accent-primary) !important;
+  border: 2px solid var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
   background: transparent !important;
 }
 
 .VPButton.alt:hover {
-  background: var(--accent-primary) !important;
+  background: var(--vp-c-brand-1) !important;
   color: #fff !important;
   transform: translateY(-2px);
-}
-
-/* ============================================
-   Cards & Containers - Rounded
-   ============================================ */
-.VPCard {
-  border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-color) !important;
-  box-shadow: var(--shadow-soft) !important;
-  transition: all 0.25s ease !important;
-}
-
-.VPCard:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-medium) !important;
-  border-color: var(--accent-secondary) !important;
 }
 
 /* ============================================
@@ -202,70 +211,67 @@
    ============================================ */
 .VPSidebar {
   background: var(--surface-secondary) !important;
-  border-right: 1px solid var(--border-color) !important;
+  border-right: 1px solid var(--vp-c-divider) !important;
 }
 
 .VPSidebarItem a {
   border-radius: var(--radius-sm) !important;
-  color: var(--text-secondary) !important;
+  color: var(--vp-c-text-2) !important;
   transition: all 0.2s ease !important;
 }
 
 .VPSidebarItem a:hover {
   background: var(--surface-muted) !important;
-  color: var(--accent-primary) !important;
+  color: var(--vp-c-brand-1) !important;
 }
 
 .VPSidebarItem.is-active > a {
-  background: var(--accent-primary) !important;
+  background: var(--vp-c-brand-1) !important;
   color: #fff !important;
   border-radius: var(--radius-sm) !important;
 }
 
 /* ============================================
-   Doc Content - Readable Typography
+   Doc Content - Readable Typography (WIDER)
    ============================================ */
 .VPDoc {
   --vp-c-bg: var(--surface-primary);
 }
 
+.VPDoc .content-container {
+  max-width: 1000px !important;  /* Increased from 800px */
+}
+
 .VPDoc h1 {
-  color: var(--text-primary) !important;
+  color: var(--vp-c-text-1) !important;
   font-weight: 800 !important;
-  border-bottom: 3px solid var(--accent-primary) !important;
+  font-size: 2.25rem !important;
+  border-bottom: 3px solid var(--vp-c-brand-1) !important;
   padding-bottom: 1rem !important;
   margin-bottom: 1.5rem !important;
   letter-spacing: -0.02em;
 }
 
 .VPDoc h2 {
-  color: var(--text-primary) !important;
+  color: var(--vp-c-text-1) !important;
   font-weight: 700 !important;
-  margin-top: 2.5rem !important;
-  margin-bottom: 1rem !important;
+  font-size: 1.75rem !important;
+  margin-top: 3rem !important;
+  margin-bottom: 1.25rem !important;
   padding-left: 1rem;
-  border-left: 4px solid var(--accent-primary) !important;
+  border-left: 5px solid var(--vp-c-brand-1) !important;
 }
 
 .VPDoc h3 {
-  color: var(--text-primary) !important;
+  color: var(--vp-c-text-1) !important;
   font-weight: 600 !important;
+  font-size: 1.35rem !important;
 }
 
 .VPDoc p {
-  line-height: 1.8 !important;
-  color: var(--text-secondary) !important;
-}
-
-.VPDoc a {
-  color: var(--accent-primary) !important;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.VPDoc a:hover {
-  border-bottom-color: var(--accent-primary);
+  font-size: 1.1rem !important;
+  line-height: 1.9 !important;
+  color: var(--vp-c-text-2) !important;
 }
 
 /* ============================================
@@ -273,30 +279,31 @@
    ============================================ */
 .vp-code-block {
   border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-color) !important;
+  border: 1px solid var(--vp-c-border) !important;
   overflow: hidden;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: 0 4px 20px rgba(45, 42, 38, 0.08) !important;
+  margin: 1.5rem 0 !important;
 }
 
 .vp-code-block pre {
-  background: #1F1C18 !important; /* Warm dark */
+  background: #1F1C18 !important;
   padding: 1.25rem 1.5rem !important;
 }
 
 .vp-code-block code {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
-  font-size: 0.9rem !important;
-  line-height: 1.6 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace !important;
+  font-size: 1rem !important;  /* Increased from 0.9rem */
+  line-height: 1.7 !important;
 }
 
 /* Inline code */
 .VPDoc code:not(pre code) {
   background: var(--surface-muted) !important;
-  color: var(--accent-primary) !important;
-  padding: 0.2em 0.5em !important;
+  color: var(--vp-c-brand-1) !important;
+  padding: 0.25em 0.6em !important;
   border-radius: var(--radius-sm) !important;
-  font-size: 0.88em !important;
-  border: 1px solid var(--border-color) !important;
+  font-size: 0.95em !important;
+  border: 1px solid var(--vp-c-border) !important;
 }
 
 .dark .VPDoc code:not(pre code) {
@@ -312,21 +319,22 @@
   width: 100% !important;
   border-radius: var(--radius-sm) !important;
   overflow: hidden;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: 0 4px 20px rgba(45, 42, 38, 0.08) !important;
+  font-size: 1.05rem !important;
 }
 
 .VPDoc th {
-  background: var(--accent-secondary) !important;
+  background: var(--vp-c-brand-2) !important;
   color: #fff !important;
   font-weight: 600 !important;
-  padding: 0.875rem 1rem !important;
+  padding: 1rem 1.25rem !important;
 }
 
 .VPDoc td {
   background: var(--surface-secondary) !important;
-  color: var(--text-primary) !important;
-  padding: 0.75rem 1rem !important;
-  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--vp-c-text-1) !important;
+  padding: 0.875rem 1.25rem !important;
+  border-bottom: 1px solid var(--vp-c-border) !important;
 }
 
 .VPDoc tr:last-child td {
@@ -341,39 +349,41 @@
    Blockquote - Terracotta Accent
    ============================================ */
 .VPDoc blockquote {
-  border-left: 5px solid var(--accent-primary) !important;
+  border-left: 5px solid var(--vp-c-brand-1) !important;
   background: var(--surface-secondary) !important;
-  padding: 1rem 1.5rem !important;
-  margin: 1.5rem 0 !important;
+  padding: 1.25rem 1.75rem !important;
+  margin: 2rem 0 !important;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
-  color: var(--text-secondary) !important;
+  color: var(--vp-c-text-2) !important;
+  font-size: 1.05rem !important;
 }
 
 .VPDoc blockquote p {
   margin: 0 !important;
+  font-size: 1.05rem !important;
 }
 
 /* ============================================
    Aside / Outline - Soft
    ============================================ */
 .VPDocAside {
-  border-left: 1px solid var(--border-color) !important;
+  border-left: 1px solid var(--vp-c-divider) !important;
   padding-left: 1.5rem !important;
 }
 
 .VPDocOutlineItem a {
-  font-size: 0.85rem !important;
-  color: var(--text-tertiary) !important;
+  font-size: 0.95rem !important;
+  color: var(--vp-c-text-3) !important;
   transition: all 0.2s ease !important;
-  padding: 0.4rem 0.75rem !important;
+  padding: 0.5rem 0.875rem !important;
   border-radius: var(--radius-sm) !important;
   border-left: 2px solid transparent !important;
 }
 
 .VPDocOutlineItem a:hover {
-  color: var(--accent-primary) !important;
+  color: var(--vp-c-brand-1) !important;
   background: var(--surface-secondary) !important;
-  border-left-color: var(--accent-primary) !important;
+  border-left-color: var(--vp-c-brand-1) !important;
 }
 
 /* ============================================
@@ -381,14 +391,14 @@
    ============================================ */
 .VPFooter {
   background: var(--surface-secondary) !important;
-  border-top: 1px solid var(--border-color) !important;
+  border-top: 1px solid var(--vp-c-divider) !important;
   padding: 2rem 0 !important;
 }
 
 .VPFooter .message,
 .VPFooter .copyright {
-  color: var(--text-tertiary) !important;
-  font-size: 0.875rem !important;
+  color: var(--vp-c-text-3) !important;
+  font-size: 0.95rem !important;
 }
 
 /* ============================================
@@ -396,16 +406,17 @@
    ============================================ */
 .VPLocalSearchBox {
   border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-color) !important;
-  box-shadow: var(--shadow-medium) !important;
+  border: 1px solid var(--vp-c-border) !important;
+  box-shadow: 0 8px 30px rgba(45, 42, 38, 0.12) !important;
   overflow: hidden;
 }
 
 .VPLocalSearchBox input {
   background: var(--surface-secondary) !important;
-  color: var(--text-primary) !important;
-  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--vp-c-text-1) !important;
+  border-bottom: 1px solid var(--vp-c-border) !important;
   padding: 1rem !important;
+  font-size: 1rem !important;
 }
 
 .VPLocalSearchBox-results {
@@ -413,9 +424,10 @@
 }
 
 .VPLocalSearchBox-result {
-  padding: 0.875rem 1rem !important;
-  border-bottom: 1px solid var(--border-color) !important;
+  padding: 1rem 1.25rem !important;
+  border-bottom: 1px solid var(--vp-c-border) !important;
   transition: background 0.2s ease !important;
+  font-size: 1rem !important;
 }
 
 .VPLocalSearchBox-result:hover,
@@ -427,17 +439,17 @@
    Back to Top - Terracotta
    ============================================ */
 .VPBackToTop {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2)) !important;
   border: none !important;
   border-radius: var(--radius-sm) !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: 0 4px 20px rgba(198, 107, 61, 0.25) !important;
   transition: all 0.3s ease !important;
   color: #fff !important;
 }
 
 .VPBackToTop:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-medium) !important;
+  box-shadow: 0 8px 30px rgba(198, 107, 61, 0.35) !important;
 }
 
 /* ============================================
@@ -453,6 +465,15 @@
 }
 
 /* ============================================
+   Doc Footer (Comments section)
+   ============================================ */
+.VPDocFooter {
+  padding-top: 2.5rem !important;
+  margin-top: 3rem !important;
+  border-top: 1px solid var(--vp-c-divider) !important;
+}
+
+/* ============================================
    Scrollbar - Warm styling
    ============================================ */
 ::-webkit-scrollbar {
@@ -465,12 +486,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
+  background: var(--vp-c-divider);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-secondary);
+  background: var(--vp-c-brand-2);
 }
 
 /* ============================================
@@ -491,6 +512,10 @@
     justify-content: center !important;
   }
 
+  .VPDoc .content-container {
+    max-width: 100% !important;
+  }
+
   .VPDoc h1 {
     font-size: 1.75rem !important;
   }
@@ -498,6 +523,10 @@
   .VPDoc h2 {
     font-size: 1.35rem !important;
     padding-left: 0.75rem;
+  }
+
+  .VPDoc p {
+    font-size: 1rem !important;
   }
 
   .VPDocAside {
@@ -514,13 +543,72 @@
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-/* Subtle hover lift for cards */
 .VPFeature:hover,
 .VPCard:hover {
   transform: translateY(-4px) !important;
 }
 
-/* Button press effect */
 .VPButton:active {
   transform: translateY(0) scale(0.98) !important;
+}
+
+/* ============================================
+   Giscus Comment wrapper styles
+   ============================================ */
+.giscus-wrapper {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.giscus-wrapper :deep(.giscus) {
+  width: 100%;
+}
+
+/* ============================================
+   Busuanzi (page views) styles
+   ============================================ */
+.busuanzi-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 1.5rem;
+}
+
+.busuanzi-value {
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.separator {
+  color: var(--vp-c-divider);
+}
+
+/* ============================================
+   Page-specific layout fixes
+   ============================================ */
+
+/* Tags and Archive pages - wider content */
+.VPPage .container {
+  max-width: 1200px !important;
+}
+
+.VPDoc .content {
+  max-width: 1000px !important;
+}
+
+/* Home page adjustments */
+.VPHero .container {
+  max-width: 1200px !important;
+}
+
+.VPFeatures .container {
+  max-width: 1200px !important;
+}
+
+/* About page */
+.VPTeamPage .VPTeamMembers {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
 }

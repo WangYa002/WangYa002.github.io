@@ -6,7 +6,7 @@ hero:
   text: "信一的个人博客"
   tagline: "分享技术心得与编程经验，记录成长路上的点点滴滴"
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: Blog Logo
   actions:
     - theme: brand
@@ -42,16 +42,14 @@ features2:
 ---
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
-// 最新文章数据
 const recentPosts = ref([
   { title: 'Vue3 组合式API完全指南', date: '2026-05-01', link: '/posts/vue3-composition-api' },
   { title: 'TypeScript 入门指南', date: '2026-04-20', link: '/posts/typescript-basics' },
   { title: 'Git 常用命令速查表', date: '2026-04-10', link: '/posts/git-commands' }
 ])
 
-// 博客统计
 const stats = ref({
   posts: 8,
   categories: 3,
@@ -60,74 +58,66 @@ const stats = ref({
 </script>
 
 <style scoped>
-/* 最新文章区域 */
 .recent-posts {
-  padding: 2rem 0;
+  padding: 2.5rem 0;
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: var(--text-primary);
+  color: var(--vp-c-text-1);
 }
 
-/* 修复：使用 CSS 变量而不是 VitePress 变量 */
-:deep(.post-list),
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-:deep(.post-item),
 .post-item {
   display: flex;
   align-items: center;
-  padding: 1rem 1.5rem;
-  background: var(--surface-secondary);
+  padding: 1.25rem 1.75rem;
+  background: var(--vp-c-bg-soft);
   border-radius: 16px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--vp-c-divider);
   transition: all 0.25s ease;
-}
-
-:deep(.post-item:hover),
-.post-item:hover {
-  transform: translateX(8px);
-  border-color: var(--accent-primary);
-  box-shadow: 0 4px 16px rgba(198, 107, 61, 0.15);
-}
-
-:deep(.post-date),
-.post-date {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  margin-right: 1rem;
-  min-width: 80px;
-}
-
-:deep(.post-title),
-.post-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
   text-decoration: none;
 }
 
-:deep(.post-title:hover),
-.post-title:hover {
-  color: var(--accent-primary);
+.post-item:hover {
+  transform: translateX(8px);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 16px rgba(198, 107, 61, 0.15);
 }
 
-/* 博客统计 */
+.post-date {
+  font-size: 0.95rem;
+  color: var(--vp-c-text-3);
+  margin-right: 1.5rem;
+  min-width: 90px;
+  font-weight: 500;
+}
+
+.post-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.post-item:hover .post-title {
+  color: var(--vp-c-brand-1);
+}
+
 .blog-stats {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  padding: 2rem 0;
+  gap: 4rem;
+  padding: 2.5rem 0;
   margin-top: 2rem;
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--vp-c-divider);
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
 .stat-item {
@@ -135,28 +125,33 @@ const stats = ref({
 }
 
 .stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--vp-c-brand-1);
+  font-family: Georgia, serif;
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
+  font-size: 1rem;
+  color: var(--vp-c-text-3);
   margin-top: 0.5rem;
 }
 
-/* 响应式 */
 @media (max-width: 768px) {
   .blog-stats {
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
+  }
+
+  .stat-value {
+    font-size: 2rem;
   }
 
   .post-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    padding: 1rem 1.25rem;
   }
 
   .post-date {
@@ -166,23 +161,21 @@ const stats = ref({
 </style>
 
 <div class="VPHome">
-  <!-- 博客统计 -->
   <div class="blog-stats">
     <div class="stat-item">
-      <div class="stat-value">{stats.value.posts}</div>
+      <div class="stat-value">{{ stats.posts }}</div>
       <div class="stat-label">文章</div>
     </div>
     <div class="stat-item">
-      <div class="stat-value">{stats.value.categories}</div>
+      <div class="stat-value">{{ stats.categories }}</div>
       <div class="stat-label">分类</div>
     </div>
     <div class="stat-item">
-      <div class="stat-value">{stats.value.tags}</div>
+      <div class="stat-value">{{ stats.tags }}</div>
       <div class="stat-label">标签</div>
     </div>
   </div>
 
-  <!-- 最新文章 -->
   <div class="recent-posts">
     <h2 class="section-title">最新文章</h2>
     <div class="post-list">

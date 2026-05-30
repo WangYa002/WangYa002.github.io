@@ -105,6 +105,17 @@ export default {
       }
     ],
 
+    // 归档页侧边栏
+    '/archive/': [
+      {
+        text: '快速导航',
+        items: [
+          { text: '文章列表', link: '/posts/' },
+          { text: '标签云', link: '/tags/' }
+        ]
+      }
+    ],
+
     // 上下篇导航
     docFooter: {
       prev: '上一篇',
@@ -124,7 +135,16 @@ export default {
     backToTop: true,
 
     // 移动端菜单
-    mobileMenuLabel: '菜单'
+    mobileMenuLabel: '菜单',
+
+    // 内容宽度配置
+    appearances: ['light', 'dark'],
+    docVersion: ''
+  },
+
+  // Markdown 配置
+  markdown: {
+    lineNumbers: false
   },
 
   // Vite 相关配置
