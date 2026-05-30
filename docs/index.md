@@ -191,7 +191,9 @@ function getCategoryColor(category) {
 }
 
 .post-card {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1.5rem 2rem;
   background: var(--vp-c-bg-soft);
   border-radius: 16px;
@@ -200,6 +202,7 @@ function getCategoryColor(category) {
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .post-card::before {
@@ -225,9 +228,21 @@ function getCategoryColor(category) {
 }
 
 .post-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-width: 0;
+}
+
+.post-title-section {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  max-width: 60%;
 }
 
 .post-title {
@@ -235,7 +250,10 @@ function getCategoryColor(category) {
   font-weight: 600;
   color: var(--vp-c-text-1);
   transition: color 0.2s ease;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-card:hover .post-title {
@@ -246,9 +264,10 @@ function getCategoryColor(category) {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
+  flex-shrink: 0;
 }
 
 .post-date {
@@ -390,16 +409,35 @@ function getCategoryColor(category) {
 
   .post-card {
     padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .post-title-section {
+    width: 100%;
+  }
+
+  .post-title {
+    white-space: normal;
+    font-size: 1.05rem;
   }
 
   .post-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    width: 100%;
   }
   
   .post-tags {
-    margin-top: 0.25rem;
+    flex: 1;
   }
 
   .post-arrow {
@@ -452,21 +490,23 @@ function getCategoryColor(category) {
         class="post-card"
       >
         <div class="post-info">
-          <span class="post-title">{{ post.title }}</span>
-          <div class="post-meta">
-            <span class="post-date">📅 {{ post.date }}</span>
-            <span
-              class="post-category"
-              :style="{ background: getCategoryColor(post.category) }"
-            >
-              {{ post.category }}
-            </span>
-            <div class="post-tags">
+          <div class="post-title-section">
+            <span class="post-title">{{ post.title }}</span>
+            <div class="post-meta">
+              <span class="post-date"> {{ post.date }}</span>
               <span
-                v-for="tag in post.tags"
-                :key="tag"
-                class="post-tag"
-              >{{ tag }}</span>
+                class="post-category"
+                :style="{ background: getCategoryColor(post.category) }"
+              >
+                {{ post.category }}
+              </span>
+              <div class="post-tags">
+                <span
+                  v-for="tag in post.tags"
+                  :key="tag"
+                  class="post-tag"
+                >{{ tag }}</span>
+              </div>
             </div>
           </div>
         </div>
