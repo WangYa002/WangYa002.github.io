@@ -830,6 +830,189 @@
 }
 
 /* ============================================
+   Posts Page - Global Styles
+   ============================================ */
+.VPPage .posts-page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.VPPage .posts-page .page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.VPPage .posts-page .header-decoration {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(198, 107, 61, 0.25);
+  animation: posts-float 3s ease-in-out infinite;
+}
+
+@keyframes posts-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.VPPage .posts-page .header-icon { font-size: 2rem; }
+
+.VPPage .posts-page .header-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.VPPage .posts-page .header-subtitle {
+  font-size: 1rem;
+  color: var(--vp-c-text-3);
+}
+
+.VPPage .posts-page .stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--vp-c-border);
+}
+
+.VPPage .posts-page .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.VPPage .posts-page .stat-icon { font-size: 1.25rem; }
+
+.VPPage .posts-page .stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--vp-c-brand-1);
+  font-family: Georgia, serif;
+}
+
+.VPPage .posts-page .stat-label {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+}
+
+.VPPage .posts-page .stat-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--vp-c-border);
+}
+
+.VPPage .posts-page .category-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.VPPage .posts-page .category-block {
+  background: var(--vp-c-bg-soft);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--vp-c-border);
+}
+
+.VPPage .posts-page .category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 2px solid var(--vp-c-border);
+}
+
+.VPPage .posts-page .cat-icon { font-size: 1.25rem; }
+
+.VPPage .posts-page .cat-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  white-space: nowrap;
+}
+
+.VPPage .posts-page .cat-line {
+  flex: 1;
+  height: 1px;
+  background: var(--vp-c-border);
+}
+
+.VPPage .posts-page .cat-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.VPPage .posts-page .post-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.625rem 0.75rem;
+  background: var(--vp-c-bg);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.VPPage .posts-page .post-row:hover {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-mute);
+}
+
+.VPPage .posts-page .post-icon { font-size: 0.9rem; }
+
+.VPPage .posts-page .post-name {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.VPPage .posts-page .post-row:hover .post-name { color: var(--vp-c-brand-1); }
+
+.VPPage .posts-page .post-date {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .VPPage .posts-page .category-sections { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .VPPage .posts-page { padding: 2rem 1rem; }
+  .VPPage .posts-page .category-sections { grid-template-columns: 1fr; gap: 1rem; }
+  .VPPage .posts-page .stats-bar { gap: 1rem; padding: 1rem 1.5rem; }
+  .VPPage .posts-page .stat-value { font-size: 1.25rem; }
+  .VPPage .posts-page .post-name { white-space: normal; font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .VPPage .posts-page .stats-bar { flex-wrap: wrap; gap: 0.75rem; }
+  .VPPage .posts-page .stat-divider { display: none; }
+}
+
+/* ============================================
    Tags Page - Global Styles
    ============================================ */
 .VPPage .tags-page {
