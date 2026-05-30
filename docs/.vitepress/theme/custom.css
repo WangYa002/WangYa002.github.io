@@ -1,0 +1,107 @@
+/* 自定义全局样式 */
+:root {
+  --vp-c-brand-1: #646cff;
+  --vp-c-brand-2: #747bff;
+  --vp-c-brand-3: #848bff;
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+.VPHomeHero .image-container {
+  transform: translateZ(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.VPHomeHero .image-container:hover {
+  transform: scale(1.05);
+}
+
+.VPFeature {
+  border-radius: 16px !important;
+  background-color: var(--vp-c-bg-soft) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPFeature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.VPFeature .icon {
+  font-size: 3rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.VPFeature .title {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPFeature .details {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* 导航栏样式优化 */
+.VPNavBar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark .VPNavBar {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+}
+
+/* 按钮样式优化 */
+.VPButton {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 0.6em 1.2em !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPButton.brand {
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2)) !important;
+  border: none !important;
+}
+
+.VPButton.alt {
+  border: 2px solid var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
+}
+
+.VPButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+}
+
+/* 首页内容区域 */
+.VPHome {
+  padding-top: 2rem !important;
+}
+
+/* 特性区域间距 */
+.VPFeatures {
+  padding: 4rem 0 !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .VPHomeHero .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .VPHomeHero .actions {
+    justify-content: center;
+  }
+  
+  .VPFeatures {
+    grid-template-columns: 1fr !important;
+  }
+}
