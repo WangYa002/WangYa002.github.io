@@ -90,18 +90,58 @@
   padding: 4rem 0 !important;
 }
 
+/* 侧边栏目录样式 */
+.VPDocAside {
+  border-left: 1px solid var(--vp-c-divider) !important;
+}
+
+.VPDocOutlineItem a {
+  font-size: 0.85rem !important;
+  color: var(--vp-c-text-2) !important;
+  transition: color 0.2s !important;
+}
+
+.VPDocOutlineItem a:hover {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* 搜索框样式优化 */
+.VPLocalSearchBox {
+  border-radius: 12px !important;
+}
+
+/* 文章页样式 */
+.VPDoc .content-container {
+  max-width: 800px !important;
+}
+
+/* 代码块样式 */
+.vp-code-block {
+  border-radius: 12px !important;
+}
+
+/* 页面底部样式 */
+.VPDocFooter {
+  padding-top: 2rem !important;
+  border-top: 1px solid var(--vp-c-divider) !important;
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
   .VPHomeHero .container {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .VPHomeHero .actions {
     justify-content: center;
   }
-  
+
   .VPFeatures {
     grid-template-columns: 1fr !important;
+  }
+
+  .VPDocAside {
+    display: none !important;
   }
 }
