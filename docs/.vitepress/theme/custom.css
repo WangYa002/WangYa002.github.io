@@ -99,10 +99,226 @@
 }
 
 /* ============================================
-   Home Page - Hero
+   Home Page Custom Components
    ============================================ */
 .VPHome {
   --vp-c-bg: var(--surface-primary);
+}
+
+/* 博客统计 - 水平居中 */
+.VPHome .blog-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem 0;
+  margin: 2rem 0;
+}
+
+.VPHome .blog-stats .stat-item {
+  text-align: center;
+}
+
+.VPHome .blog-stats .stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--vp-c-brand-1);
+  line-height: 1.2;
+}
+
+.VPHome .blog-stats .stat-label {
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.25rem;
+}
+
+/* 最新文章 */
+.VPHome .recent-posts {
+  margin: 3rem 0;
+}
+
+.VPHome .section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.VPHome .section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  white-space: nowrap;
+}
+
+.VPHome .section-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--vp-c-brand-1), transparent);
+}
+
+.VPHome .section-link {
+  font-size: 0.95rem;
+  color: var(--vp-c-brand-1);
+  white-space: nowrap;
+}
+
+.VPHome .section-link:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.VPHome .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.VPHome .post-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-secondary);
+  border: 1px solid var(--vp-c-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.VPHome .post-card:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(45, 42, 38, 0.08);
+}
+
+.VPHome .post-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.VPHome .post-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.VPHome .post-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.VPHome .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.VPHome .post-date {
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+}
+
+.VPHome .post-category {
+  font-size: 0.75rem;
+  padding: 0.2em 0.6em;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-weight: 500;
+}
+
+.VPHome .post-tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.VPHome .post-tag {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+  background: var(--surface-muted);
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius-sm);
+}
+
+.VPHome .post-arrow {
+  font-size: 1.25rem;
+  color: var(--vp-c-text-3);
+  transition: transform 0.2s ease;
+}
+
+.VPHome .post-card:hover .post-arrow {
+  transform: translateX(4px);
+  color: var(--vp-c-brand-1);
+}
+
+/* 快速导航 - 水平居中 */
+.VPHome .quick-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.VPHome .quick-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  background: var(--surface-secondary);
+  border: 1px solid var(--vp-c-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  min-width: 180px;
+  text-align: center;
+}
+
+.VPHome .quick-nav-item:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(45, 42, 38, 0.12);
+}
+
+.VPHome .quick-nav-icon {
+  font-size: 2rem;
+}
+
+.VPHome .quick-nav-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.VPHome .quick-nav-desc {
+  font-size: 0.875rem;
+  color: var(--vp-c-text-3);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .VPHome .blog-stats {
+    gap: 2rem;
+  }
+
+  .VPHome .blog-stats .stat-value {
+    font-size: 2rem;
+  }
+
+  .VPHome .quick-nav {
+    gap: 1rem;
+  }
+
+  .VPHome .quick-nav-item {
+    min-width: 150px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .VPHome .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .VPHero {
