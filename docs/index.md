@@ -5,9 +5,7 @@ hero:
   name: "汪洋恣意"
   text: "信一的个人博客"
   tagline: "分享技术心得与编程经验，记录成长路上的点点滴滴"
-  image:
-    src: /logo.svg
-    alt: Blog Logo
+  image: false
   actions:
     - theme: brand
       text: 阅读文章
@@ -41,8 +39,11 @@ features2:
     details: 输入关键词快速找到文章
 ---
 
+<Logo class="home-logo" />
+
 <script setup>
 import { ref } from 'vue'
+import Logo from './.vitepress/theme/components/Logo.vue'
 
 const stats = ref({
   posts: 10,
@@ -94,6 +95,18 @@ function getCategoryColor(category) {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-start;
+}
+
+/* ============================================
+   Home Logo
+   ============================================ */
+.home-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 2rem;
 }
 
 /* ============================================
