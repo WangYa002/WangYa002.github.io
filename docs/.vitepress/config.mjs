@@ -20,8 +20,8 @@ export default {
     ['meta', { name: 'author', content: '汪洋恣意' }],
     // 移动端视口
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-    // 主题色
-    ['meta', { name: 'theme-color', content: '#646cff' }],
+    // 主题色 - Terracotta (Organic anchor)
+    ['meta', { name: 'theme-color', content: '#C66B3D' }],
     // Apple 图标
     ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
     // 禁止百度转码

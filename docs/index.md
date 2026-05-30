@@ -6,7 +6,7 @@ hero:
   text: "信一的个人博客"
   tagline: "分享技术心得与编程经验，记录成长路上的点点滴滴"
   image:
-    src: /logo.svg
+    src: /logo.png
     alt: Blog Logo
   actions:
     - theme: brand
@@ -69,47 +69,54 @@ const stats = ref({
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: var(--vp-c-text-1);
+  color: var(--text-primary);
 }
 
+/* 修复：使用 CSS 变量而不是 VitePress 变量 */
+:deep(.post-list),
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
+:deep(.post-item),
 .post-item {
   display: flex;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  border: 1px solid var(--vp-c-divider);
-  transition: all 0.3s ease;
+  background: var(--surface-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: all 0.25s ease;
 }
 
+:deep(.post-item:hover),
 .post-item:hover {
   transform: translateX(8px);
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.1);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 16px rgba(198, 107, 61, 0.15);
 }
 
+:deep(.post-date),
 .post-date {
   font-size: 0.85rem;
-  color: var(--vp-c-text-3);
+  color: var(--text-tertiary);
   margin-right: 1rem;
   min-width: 80px;
 }
 
+:deep(.post-title),
 .post-title {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--vp-c-text-1);
+  color: var(--text-primary);
   text-decoration: none;
 }
 
+:deep(.post-title:hover),
 .post-title:hover {
-  color: var(--vp-c-brand-1);
+  color: var(--accent-primary);
 }
 
 /* 博客统计 */
@@ -119,8 +126,8 @@ const stats = ref({
   gap: 3rem;
   padding: 2rem 0;
   margin-top: 2rem;
-  border-top: 1px solid var(--vp-c-divider);
-  border-bottom: 1px solid var(--vp-c-divider);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .stat-item {
@@ -130,12 +137,12 @@ const stats = ref({
 .stat-value {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--vp-c-brand-1);
+  color: var(--accent-primary);
 }
 
 .stat-label {
   font-size: 0.85rem;
-  color: var(--vp-c-text-2);
+  color: var(--text-tertiary);
   margin-top: 0.5rem;
 }
 
@@ -177,7 +184,7 @@ const stats = ref({
 
   <!-- 最新文章 -->
   <div class="recent-posts">
-    <h2 class="section-title">📖 最新文章</h2>
+    <h2 class="section-title">最新文章</h2>
     <div class="post-list">
       <a
         v-for="post in recentPosts"
