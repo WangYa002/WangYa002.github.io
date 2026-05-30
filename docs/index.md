@@ -92,10 +92,13 @@ function getCategoryColor(category) {
 .blog-stats {
   display: flex;
   justify-content: center;
-  gap: 5rem;
-  padding: 3rem 0;
+  gap: 4rem;
+  padding: 2rem 0;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 600px;
+  background: var(--vp-c-bg-soft);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .stat-item {
@@ -108,7 +111,7 @@ function getCategoryColor(category) {
 .stat-item::after {
   content: '';
   position: absolute;
-  right: -2.5rem;
+  right: -2rem;
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
@@ -121,7 +124,7 @@ function getCategoryColor(category) {
 }
 
 .stat-value {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--vp-c-brand-1);
   font-family: Georgia, serif;
@@ -129,9 +132,9 @@ function getCategoryColor(category) {
 }
 
 .stat-label {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--vp-c-text-2);
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   letter-spacing: 0.05em;
 }
 
@@ -184,15 +187,14 @@ function getCategoryColor(category) {
 .post-list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .post-card {
-  display: flex;
-  align-items: center;
+  display: block;
   padding: 1.5rem 2rem;
   background: var(--vp-c-bg-soft);
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid transparent;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -223,16 +225,9 @@ function getCategoryColor(category) {
 }
 
 .post-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-}
-
-.post-main {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
 }
 
 .post-title {
@@ -240,6 +235,7 @@ function getCategoryColor(category) {
   font-weight: 600;
   color: var(--vp-c-text-1);
   transition: color 0.2s ease;
+  margin-bottom: 0.5rem;
 }
 
 .post-card:hover .post-title {
@@ -249,22 +245,24 @@ function getCategoryColor(category) {
 .post-meta {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
   font-size: 0.9rem;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .post-date {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  color: var(--vp-c-text-3);
 }
 
 .post-category {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.75rem;
   background: var(--vp-c-brand-1);
   color: #fff;
   border-radius: 20px;
@@ -275,7 +273,7 @@ function getCategoryColor(category) {
 .post-tags {
   display: flex;
   gap: 0.5rem;
-  margin-left: auto;
+  flex-wrap: wrap;
 }
 
 .post-tag {
@@ -292,15 +290,18 @@ function getCategoryColor(category) {
 }
 
 .post-arrow {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 1.25rem;
   color: var(--vp-c-text-3);
   transition: all 0.3s ease;
-  margin-left: 1rem;
 }
 
 .post-card:hover .post-arrow {
   color: var(--vp-c-brand-1);
-  transform: translateX(4px);
+  transform: translateY(-50%) translateX(4px);
 }
 
 /* ============================================
@@ -357,15 +358,30 @@ function getCategoryColor(category) {
   .quick-nav {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .blog-stats {
+    gap: 2.5rem;
+    max-width: 100%;
+  }
+  
+  .stat-item::after {
+    right: -1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
   .blog-stats {
-    gap: 2.5rem;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
   }
 
   .stat-value {
-    font-size: 2.25rem;
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
   }
 
   .stat-item::after {
@@ -374,24 +390,16 @@ function getCategoryColor(category) {
 
   .post-card {
     padding: 1.25rem 1.5rem;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
-  .post-main {
+  .post-meta {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-
-  .post-meta {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
+  
   .post-tags {
-    margin-left: 0;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
 
   .post-arrow {
@@ -444,9 +452,7 @@ function getCategoryColor(category) {
         class="post-card"
       >
         <div class="post-info">
-          <div class="post-main">
-            <span class="post-title">{{ post.title }}</span>
-          </div>
+          <span class="post-title">{{ post.title }}</span>
           <div class="post-meta">
             <span class="post-date">📅 {{ post.date }}</span>
             <span
