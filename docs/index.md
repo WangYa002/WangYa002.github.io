@@ -327,44 +327,70 @@ function getCategoryColor(category) {
    Quick Navigation
    ============================================ */
 .quick-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 1.5rem;
   padding: 2rem 0;
+  justify-content: center;
 }
 
 .quick-nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
+  justify-content: center;
+  width: 280px;
+  height: 160px;
+  padding: 1.5rem;
   background: var(--vp-c-bg-soft);
   border-radius: 20px;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), #e8a87c);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .quick-nav-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--vp-c-brand-1);
-  box-shadow: 0 8px 24px rgba(198, 107, 61, 0.12);
+  box-shadow: 0 12px 32px rgba(198, 107, 61, 0.18);
+}
+
+.quick-nav-item:hover::before {
+  transform: scaleX(1);
 }
 
 .quick-nav-icon {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.quick-nav-item:hover .quick-nav-icon {
+  transform: scale(1.1);
 }
 
 .quick-nav-title {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .quick-nav-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-3);
   text-align: center;
   line-height: 1.5;
@@ -373,18 +399,51 @@ function getCategoryColor(category) {
 /* ============================================
    Responsive
    ============================================ */
+@media (max-width: 1024px) {
+  .quick-nav {
+    gap: 1rem;
+  }
+
+  .quick-nav-item {
+    width: 240px;
+    height: 150px;
+    padding: 1.25rem;
+  }
+}
+
 @media (max-width: 900px) {
   .quick-nav {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
   }
-  
+
+  .quick-nav-item {
+    width: calc(50% - 0.5rem);
+    max-width: 280px;
+    height: auto;
+    min-height: 140px;
+  }
+
   .blog-stats {
     gap: 2.5rem;
     max-width: 100%;
   }
-  
+
   .stat-item::after {
     right: -1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .quick-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quick-nav-item {
+    width: 100%;
+    max-width: 320px;
   }
 }
 
@@ -442,10 +501,6 @@ function getCategoryColor(category) {
 
   .post-arrow {
     display: none;
-  }
-
-  .quick-nav {
-    grid-template-columns: 1fr;
   }
 
   .section-header {
