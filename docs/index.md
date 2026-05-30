@@ -68,12 +68,6 @@ const recentPosts = ref([
   }
 ])
 
-const stats = ref({
-  posts: 8,
-  categories: 3,
-  tags: 9
-})
-
 function getCategoryColor(category) {
   const colors = {
     '前端': '#C66B3D',

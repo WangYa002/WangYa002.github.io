@@ -89,6 +89,34 @@ export default {
             { text: 'Docker 入门教程', link: '/posts/docker-basics' },
             { text: '前后端分离项目部署指南', link: '/posts/deployment-guide' }
           ]
+        },
+        {
+          text: '八股文',
+          collapsed: false,
+          items: [
+            { text: 'HTTP与TCP', link: '/posts/八股文-1' }
+          ]
+        },
+        {
+          text: '算法',
+          collapsed: false,
+          items: [
+            { text: '两数之和', link: '/posts/算法-1' }
+          ]
+        },
+        {
+          text: '项目经历',
+          collapsed: false,
+          items: [
+            { text: '项目介绍', link: '/posts/aas-1' }
+          ]
+        },
+        {
+          text: 'GOlang&C++',
+          collapsed: false,
+          items: [
+            { text: '环境搭建', link: '/posts/golang-1' }
+          ]
         }
       ]
     },

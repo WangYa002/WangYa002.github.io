@@ -39,6 +39,38 @@ title: 标签云
       <span class="overview-lbl">工具与运维</span>
     </div>
   </div>
+  <div class="strip-divider"></div>
+  <div class="overview-item">
+    <span class="overview-icon">📚</span>
+    <div class="overview-data">
+      <span class="overview-num">1</span>
+      <span class="overview-lbl">八股文</span>
+    </div>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="overview-item">
+    <span class="overview-icon">🧮</span>
+    <div class="overview-data">
+      <span class="overview-num">1</span>
+      <span class="overview-lbl">算法</span>
+    </div>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="overview-item">
+    <span class="overview-icon">🚀</span>
+    <div class="overview-data">
+      <span class="overview-num">1</span>
+      <span class="overview-lbl">项目经历</span>
+    </div>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="overview-item">
+    <span class="overview-icon">🐹</span>
+    <div class="overview-data">
+      <span class="overview-num">1</span>
+      <span class="overview-lbl">GOlang&C++</span>
+    </div>
+  </div>
 </div>
 
 <!-- Tag Grid - All tags in one unified grid -->
@@ -46,7 +78,7 @@ title: 标签云
   <div class="section-label">
     <span class="label-icon">📋</span>
     <span class="label-text">全部标签</span>
-    <span class="label-count">9 个标签</span>
+    <span class="label-count">13 个标签</span>
   </div>
   <div class="tag-grid">
     <!-- Frontend -->
@@ -96,6 +128,26 @@ title: 标签云
       <span class="pill-icon">🔄</span>
       <span class="pill-name">DevOps</span>
       <span class="pill-count">2 篇</span>
+    </a>
+    <a href="/tags/interview/" class="tag-pill tag-backend">
+      <span class="pill-icon">📚</span>
+      <span class="pill-name">八股文</span>
+      <span class="pill-count">1 篇</span>
+    </a>
+    <a href="/tags/algorithm/" class="tag-pill tag-backend">
+      <span class="pill-icon">🧮</span>
+      <span class="pill-name">算法</span>
+      <span class="pill-count">1 篇</span>
+    </a>
+    <a href="/tags/project/" class="tag-pill tag-frontend">
+      <span class="pill-icon">🚀</span>
+      <span class="pill-name">项目经历</span>
+      <span class="pill-count">1 篇</span>
+    </a>
+    <a href="/tags/golang/" class="tag-pill tag-backend">
+      <span class="pill-icon">🐹</span>
+      <span class="pill-name">GOlang&C++</span>
+      <span class="pill-count">1 篇</span>
     </a>
   </div>
 </div>
@@ -164,6 +216,66 @@ title: 标签云
         <span class="post-icon">🔄</span>
         <span class="post-name">前后端分离项目部署指南</span>
         <span class="post-date">2026-03-20</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-header">
+      <span class="cat-icon">📚</span>
+      <h2 class="cat-title">八股文</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="cat-posts">
+      <a href="/posts/八股文-1" class="post-row">
+        <span class="post-icon">📚</span>
+        <span class="post-name">HTTP与TCP</span>
+        <span class="post-date">2026-05-10</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-header">
+      <span class="cat-icon">🧮</span>
+      <h2 class="cat-title">算法</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="cat-posts">
+      <a href="/posts/算法-1" class="post-row">
+        <span class="post-icon">🧮</span>
+        <span class="post-name">两数之和</span>
+        <span class="post-date">2026-05-10</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-header">
+      <span class="cat-icon">🚀</span>
+      <h2 class="cat-title">项目经历</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="cat-posts">
+      <a href="/posts/aas-1" class="post-row">
+        <span class="post-icon">🚀</span>
+        <span class="post-name">项目介绍</span>
+        <span class="post-date">2026-05-10</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-header">
+      <span class="cat-icon">🐹</span>
+      <h2 class="cat-title">GOlang&C++</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="cat-posts">
+      <a href="/posts/golang-1" class="post-row">
+        <span class="post-icon">🐹</span>
+        <span class="post-name">环境搭建</span>
+        <span class="post-date">2026-05-10</span>
       </a>
     </div>
   </div>
