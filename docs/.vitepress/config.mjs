@@ -128,6 +128,10 @@ export default {
         items: [
           { text: '前端', link: '/tags/frontend/' },
           { text: '后端', link: '/tags/backend/' },
+          { text: '八股文', link: '/tags/interview/' },
+          { text: '算法', link: '/tags/algorithm/' },
+          { text: '项目经历', link: '/tags/project/' },
+          { text: 'GOlang&C++', link: '/tags/golang/' },
           { text: 'DevOps', link: '/tags/devops/' }
         ]
       }

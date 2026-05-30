@@ -27,7 +27,7 @@ title: 标签云
   <div class="overview-item">
     <span class="overview-icon">⚙️</span>
     <div class="overview-data">
-      <span class="overview-num">2</span>
+      <span class="overview-num">3</span>
       <span class="overview-lbl">后端</span>
     </div>
   </div>
@@ -274,7 +274,7 @@ title: 标签云
     <div class="cat-posts">
       <a href="/posts/golang-1" class="post-row">
         <span class="post-icon">🐹</span>
-        <span class="post-name">环境搭建</span>
+        <span class="post-name">Go语言环境搭建与快速入门</span>
         <span class="post-date">2026-05-10</span>
       </a>
     </div>
