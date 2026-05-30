@@ -44,6 +44,12 @@ features2:
 <script setup>
 import { ref } from 'vue'
 
+const stats = ref({
+  posts: 10,
+  categories: 7,
+  tags: 13
+})
+
 const recentPosts = ref([
   {
     title: 'Vue3 组合式API完全指南',
