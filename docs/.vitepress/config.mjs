@@ -12,6 +12,8 @@ export default {
   head: [
     // 图标
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    // RSS 订阅
+    ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
     ['meta', { name: 'keywords', content: '技术博客, 前端开发, 后端开发, Vue, JavaScript' }],
     // 作者
