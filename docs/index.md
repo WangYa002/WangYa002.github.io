@@ -322,10 +322,10 @@ function getCategoryColor(category) {
    Quick Navigation
    ============================================ */
 .quick-nav {
-  flex: 0 0 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  width: 100%;
   padding: 0;
 }
 
@@ -334,7 +334,6 @@ function getCategoryColor(category) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 160px;
   padding: 1.5rem;
   background: var(--vp-c-bg-soft);
@@ -395,18 +394,6 @@ function getCategoryColor(category) {
 /* ============================================
    Responsive
    ============================================ */
-@media (max-width: 1024px) {
-  .quick-nav {
-    gap: 1rem;
-  }
-
-  .quick-nav-item {
-    width: 240px;
-    height: 150px;
-    padding: 1.25rem;
-  }
-}
-
 @media (max-width: 900px) {
   .VPHome {
     flex-direction: column;
@@ -415,7 +402,6 @@ function getCategoryColor(category) {
   .blog-stats,
   .recent-posts,
   .quick-nav {
-    flex: 0 0 100%;
     width: 100%;
   }
 
@@ -455,7 +441,7 @@ function getCategoryColor(category) {
   .stat-value {
     font-size: 2rem;
   }
-  
+
   .stat-label {
     font-size: 0.85rem;
   }
@@ -492,7 +478,7 @@ function getCategoryColor(category) {
     gap: 0.75rem;
     width: 100%;
   }
-  
+
   .post-tags {
     flex: 1;
   }
