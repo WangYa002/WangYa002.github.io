@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs && node docs/.vitepress/plugins/feed.cjs",
+    "build": "vitepress build docs && node docs/.vitepress/plugins/feed.cjs && node docs/.vitepress/plugins/sitemap.cjs",
     "preview": "vitepress preview docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

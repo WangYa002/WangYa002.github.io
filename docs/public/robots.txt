@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 10
+
+# Disallow paths (if needed)
+Disallow: /.vitepress/cache/
+Disallow: /node_modules/

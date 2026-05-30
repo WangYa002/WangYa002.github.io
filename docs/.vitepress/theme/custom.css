@@ -1,14 +1,61 @@
-/* 自定义全局样式 */
+/* ============================================
+   自定义主题色 - VitePress Blog Theme
+   ============================================ */
+
 :root {
+  /* 主色调 - 蓝紫色渐变 */
   --vp-c-brand-1: #646cff;
   --vp-c-brand-2: #747bff;
   --vp-c-brand-3: #848bff;
+  --vp-c-brand-soft: rgba(100, 108, 255, 0.12);
+
+  /* 背景色 */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f6f8fa;
+  --vp-c-bg-mute: #eef1f5;
+
+  /* 文字颜色 */
+  --vp-c-text-1: #1f2328;
+  --vp-c-text-2: #656d76;
+  --vp-c-text-3: #8b949e;
+
+  /* 分隔线 */
+  --vp-c-divider: #d0d7de;
+  --vp-c-border: #d8dee4;
+
+  /* 首页 Hero 样式 */
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
   --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
   --vp-home-hero-image-filter: blur(40px);
+
+  /* 代码高亮主题 */
+  --vp-code-block-bg: #1e1e2e;
+  --vp-code-color: #cdd6f4;
+
+  /* 阴影 */
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* 暗色模式 */
+.dark {
+  --vp-c-bg: #0d1117;
+  --vp-c-bg-soft: #161b22;
+  --vp-c-bg-mute: #21262d;
+  --vp-c-text-1: #e6edf3;
+  --vp-c-text-2: #8b949e;
+  --vp-c-text-3: #6e7681;
+  --vp-c-divider: #30363d;
+  --vp-c-border: #21262d;
+  --vp-code-block-bg: #0d1117;
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   首页 Hero 区域
+   ============================================ */
 .VPHomeHero .image-container {
   transform: translateZ(0);
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -18,16 +65,21 @@
   transform: scale(1.05);
 }
 
+/* ============================================
+   功能卡片（Features）
+   ============================================ */
 .VPFeature {
   border-radius: 16px !important;
   background-color: var(--vp-c-bg-soft) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: var(--shadow-light) !important;
   transition: all 0.3s ease !important;
+  border: 1px solid var(--vp-c-border) !important;
 }
 
 .VPFeature:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: var(--shadow-medium) !important;
+  border-color: var(--vp-c-brand-1) !important;
 }
 
 .VPFeature .icon {
@@ -47,101 +99,394 @@
   color: var(--vp-c-text-2) !important;
 }
 
-/* 导航栏样式优化 */
+/* ============================================
+   导航栏
+   ============================================ */
 .VPNavBar {
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+  transition: background-color 0.3s ease !important;
 }
 
 .dark .VPNavBar {
-  background-color: rgba(30, 30, 30, 0.8) !important;
+  background-color: rgba(13, 17, 23, 0.85) !important;
 }
 
-/* 按钮样式优化 */
+.VPNavBar .title {
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 导航链接悬停效果 */
+.VPNavBar a:hover {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ============================================
+   按钮样式
+   ============================================ */
 .VPButton {
   border-radius: 8px !important;
   font-weight: 600 !important;
   padding: 0.6em 1.2em !important;
   transition: all 0.3s ease !important;
+  letter-spacing: 0.02em !important;
 }
 
 .VPButton.brand {
   background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2)) !important;
   border: none !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.25) !important;
+}
+
+.VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 108, 255, 0.35) !important;
 }
 
 .VPButton.alt {
   border: 2px solid var(--vp-c-brand-1) !important;
   color: var(--vp-c-brand-1) !important;
+  background: transparent !important;
 }
 
-.VPButton:hover {
+.VPButton.alt:hover {
+  background: var(--vp-c-brand-soft) !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
 }
 
-/* 首页内容区域 */
+/* ============================================
+   首页样式
+   ============================================ */
 .VPHome {
   padding-top: 2rem !important;
 }
 
-/* 特性区域间距 */
 .VPFeatures {
   padding: 4rem 0 !important;
+  gap: 2rem !important;
 }
 
-/* 侧边栏目录样式 */
+/* ============================================
+   侧边栏目录
+   ============================================ */
 .VPDocAside {
   border-left: 1px solid var(--vp-c-divider) !important;
+  padding-left: 1.5rem !important;
+}
+
+.VPDocOutlineItem {
+  padding: 0.3rem 0 !important;
 }
 
 .VPDocOutlineItem a {
   font-size: 0.85rem !important;
   color: var(--vp-c-text-2) !important;
   transition: color 0.2s !important;
+  padding: 0.3rem 0 !important;
+  border-left: 2px solid transparent !important;
+  padding-left: 0.75rem !important;
 }
 
 .VPDocOutlineItem a:hover {
   color: var(--vp-c-brand-1) !important;
+  border-left-color: var(--vp-c-brand-1) !important;
 }
 
-/* 搜索框样式优化 */
+/* 目录标题 */
+.VPDocAsideOutline-title {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--vp-c-text-3) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* ============================================
+   搜索框
+   ============================================ */
 .VPLocalSearchBox {
+  border-radius: 12px !important;
+  border: 1px solid var(--vp-c-border) !important;
+}
+
+.VPLocalSearchBox .shell {
   border-radius: 12px !important;
 }
 
-/* 文章页样式 */
+/* ============================================
+   文章页样式
+   ============================================ */
 .VPDoc .content-container {
   max-width: 800px !important;
 }
 
-/* 代码块样式 */
+.VPDoc h1 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  color: var(--vp-c-text-1) !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 2px solid var(--vp-c-brand-1) !important;
+}
+
+.VPDoc h2 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPDoc h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPDoc p {
+  line-height: 1.8 !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* 文章内容中的链接 */
+.VPDoc a {
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.VPDoc a:hover {
+  border-bottom-color: var(--vp-c-brand-1) !important;
+}
+
+/* ============================================
+   代码块样式
+   ============================================ */
 .vp-code-block {
+  border-radius: 12px !important;
+  margin: 1.5rem 0 !important;
+  border: 1px solid var(--vp-c-border) !important;
+}
+
+.vp-code-block pre {
   border-radius: 12px !important;
 }
 
-/* 页面底部样式 */
+/* Inline code */
+.VPDoc code:not(pre code) {
+  background: var(--vp-c-bg-soft) !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+  color: var(--vp-c-brand-1) !important;
+  border: 1px solid var(--vp-c-border) !important;
+}
+
+.dark .VPDoc code:not(pre code) {
+  background: var(--vp-c-bg-mute) !important;
+}
+
+/* ============================================
+   页面底部
+   ============================================ */
 .VPDocFooter {
   padding-top: 2rem !important;
+  margin-top: 3rem !important;
   border-top: 1px solid var(--vp-c-divider) !important;
 }
 
-/* 响应式调整 */
+/* ============================================
+   表格样式
+   ============================================ */
+.VPDoc table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+}
+
+.VPDoc th,
+.VPDoc td {
+  padding: 0.75rem 1rem !important;
+  border: 1px solid var(--vp-c-border) !important;
+  text-align: left !important;
+}
+
+.VPDoc th {
+  background: var(--vp-c-bg-soft) !important;
+  font-weight: 600 !important;
+}
+
+.VPDoc tr:hover td {
+  background: var(--vp-c-bg-soft) !important;
+}
+
+/* ============================================
+   引用块（Blockquote）
+   ============================================ */
+.VPDoc blockquote {
+  border-left: 4px solid var(--vp-c-brand-1) !important;
+  background: var(--vp-c-bg-soft) !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-style: normal !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* ============================================
+   分割线
+   ============================================ */
+.VPDoc hr {
+  border: none !important;
+  height: 1px !important;
+  background: var(--vp-c-divider) !important;
+  margin: 2rem 0 !important;
+}
+
+/* ============================================
+   列表样式
+   ============================================ */
+.VPDoc ul,
+.VPDoc ol {
+  padding-left: 1.5rem !important;
+}
+
+.VPDoc li {
+  margin: 0.5rem 0 !important;
+  line-height: 1.7 !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.VPDoc ul li::marker {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ============================================
+   滚动条样式
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-soft) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3) !important;
+}
+
+/* ============================================
+   响应式设计
+   ============================================ */
 @media (max-width: 768px) {
   .VPHomeHero .container {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column !important;
+    text-align: center !important;
   }
 
   .VPHomeHero .actions {
-    justify-content: center;
+    justify-content: center !important;
   }
 
   .VPFeatures {
     grid-template-columns: 1fr !important;
+    padding: 2rem 0 !important;
   }
 
   .VPDocAside {
     display: none !important;
   }
+
+  .VPDoc .content-container {
+    max-width: 100% !important;
+  }
+
+  .VPNavBar .title {
+    font-size: 1rem !important;
+  }
+
+  .VPFeature {
+    border-radius: 12px !important;
+  }
+
+  .VPFeature:hover {
+    transform: translateY(-3px) !important;
+  }
+}
+
+/* ============================================
+   页脚样式
+   ============================================ */
+.VPFooter {
+  padding: 2rem 0 !important;
+  border-top: 1px solid var(--vp-c-divider) !important;
+  background: var(--vp-c-bg-soft) !important;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  color: var(--vp-c-text-2) !important;
+  font-size: 0.875rem !important;
+}
+
+/* ============================================
+   本地搜索结果
+   ============================================ */
+.VPLocalSearchBox-results {
+  border-radius: 12px !important;
+}
+
+.VPLocalSearchBox-result {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+}
+
+.VPLocalSearchBox-result:hover {
+  background: var(--vp-c-bg-soft) !important;
+}
+
+.VPLocalSearchBox-result.selected {
+  background: var(--vp-c-brand-soft) !important;
+}
+
+/* ============================================
+   暗色模式切换按钮
+   ============================================ */
+.VPNavBarAppearance {
+  transition: opacity 0.2s ease !important;
+}
+
+.VPNavBarAppearance:hover {
+  opacity: 0.8 !important;
+}
+
+/* ============================================
+   返回顶部按钮
+   ============================================ */
+.VPBackToTop {
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2)) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-light) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPBackToTop:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-medium) !important;
 }

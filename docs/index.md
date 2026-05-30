@@ -6,7 +6,7 @@ hero:
   text: "信一的个人博客"
   tagline: "分享技术心得与编程经验，记录成长路上的点点滴滴"
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: Blog Logo
   actions:
     - theme: brand

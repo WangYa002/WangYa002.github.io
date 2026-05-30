@@ -10,8 +10,8 @@ export default {
 
   // Head 标签（SEO）
   head: [
-    // 图标
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    // SVG 图标
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     // RSS 订阅
     ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
@@ -22,10 +22,18 @@ export default {
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     // 主题色
     ['meta', { name: 'theme-color', content: '#646cff' }],
+    // Apple 图标
+    ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
+    // 禁止百度转码
+    ['meta', { name: 'Baiduid', content: '' }],
+    // Sitemap
+    ['link', { rel: 'sitemap', type: 'application/xml', title: 'Sitemap', href: '/sitemap.xml' }],
   ],
 
   // 主题配置
   themeConfig: {
+    // Logo
+    logo: '/logo.svg',
     // 导航栏
     nav: [
       { text: "首页", link: "/" },
@@ -119,10 +127,25 @@ export default {
     mobileMenuLabel: '菜单'
   },
 
-  // VitePress 相关配置
+  // Vite 相关配置
   vite: {
     css: {
       preprocessorOptions: {}
+    },
+    build: {
+      // 启用 CSS 代码分割
+      cssCodeSplit: true,
+      // 启用 rollup 压缩
+      minify: 'esbuild',
+      // 资源内联阈值
+      assetsInlineLimit: 4096
+    },
+    // 优化
+    optimizeDeps: {
+      include: ['vue', 'vitepress']
     }
-  }
+  },
+
+  // 构建后清理
+  cleanUrls: false
 }
