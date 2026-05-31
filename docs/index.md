@@ -15,7 +15,7 @@ hero:
       link: /about
 
 features:
-  - icon: 
+  - icon: 📝
     title: 技术文章
     link: /posts/vue3-composition-api
     details: 分享前端、后端开发经验和最佳实践，涵盖 Vue、React、Node.js 等技术栈

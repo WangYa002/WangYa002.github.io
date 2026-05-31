@@ -35,8 +35,8 @@ import Logo from './Logo.vue'
 }
 
 :deep(.home-hero-logo) {
-  width: 320px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   display: block;
   filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
   animation: heroLogoFloat 4s ease-in-out infinite;
@@ -55,9 +55,9 @@ import Logo from './Logo.vue'
 :deep(.VPHero .container) {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 3rem;
-  padding-top: 0rem;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 0.5rem;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -66,16 +66,16 @@ import Logo from './Logo.vue'
 :deep(.VPHero .main) {
   margin-top: 0;
   flex: 1;
-  max-width: calc(100% - 320px);
+  min-width: 0;
 }
 
-/* Logo 使用绝对定位放在容器右侧 */
+/* Logo 容器 - 使用 Flexbox 布局 */
 .custom-hero-wrapper {
-  position: absolute;
-  right: 26%;
-  top: 10%;
-  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 300px;
 }
 
 :deep(.VPHero .image) {
@@ -93,5 +93,67 @@ import Logo from './Logo.vue'
 :deep(.VPNavBar) {
   z-index: 100;
   position: relative;
+}
+
+/* 平板端适配 (768px - 1024px) */
+@media (max-width: 1024px) {
+  :deep(.VPHero .container) {
+    gap: 1.5rem;
+  }
+  
+  :deep(.home-hero-logo) {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .custom-hero-wrapper {
+    width: 260px;
+  }
+}
+
+/* 移动端适配 (< 768px) */
+@media (max-width: 768px) {
+  :deep(.VPHero .container) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+  
+  :deep(.VPHero .main) {
+    order: 1;
+    max-width: 100%;
+  }
+  
+  .custom-hero-wrapper {
+    order: 2;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  
+  :deep(.home-hero-logo) {
+    width: 200px;
+    height: 200px;
+  }
+  
+  :deep(.VPHero .actions) {
+    justify-content: center;
+  }
+}
+
+/* 小屏移动端 (< 480px) */
+@media (max-width: 480px) {
+  :deep(.home-hero-logo) {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .custom-hero-wrapper {
+    margin-top: 1rem;
+  }
+  
+  :deep(.VPHero .container) {
+    padding-top: 0.75rem;
+  }
 }
 </style>
