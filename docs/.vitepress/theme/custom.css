@@ -322,8 +322,9 @@
 }
 
 .VPHero {
-  padding: 1rem 0 0 !important;
+  padding: 0 0 1rem !important;
   margin-top: 0 !important;
+  min-height: auto !important;
 }
 
 .VPHero .container {
