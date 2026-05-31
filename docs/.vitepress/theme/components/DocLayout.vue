@@ -3,10 +3,11 @@
     <template #nav-bar-title-before>
       <Logo class="nav-logo" />
     </template>
+    <template #home-hero-image>
+      <Logo class="home-hero-logo" />
+    </template>
     <template #home-hero-after>
-      <div class="custom-hero-image">
-        <Logo class="home-hero-logo" />
-      </div>
+      <span></span>
     </template>
     <template #doc-footer-before>
       <Busuanzi class="page-views" />
@@ -57,27 +58,24 @@ import Logo from './Logo.vue'
   align-items: flex-start;
   justify-content: space-between;
   gap: 4rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   position: relative;
 }
 
 :deep(.VPHero .main) {
-  margin-top: 0;
+  margin-top: -1.5rem;
   flex: 1;
 }
 
-.custom-hero-image {
+:deep(.VPHero .image) {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   width: 280px;
+  height: 100%;
   position: relative;
   z-index: 10;
-  margin-top: -3rem;
-}
-
-:deep(.VPHero .image) {
-  display: none;
+  margin-top: 1rem;
 }
 
 :deep(.VPHero .image-container) {
@@ -92,4 +90,3 @@ import Logo from './Logo.vue'
   z-index: 100;
   position: relative;
 }
-</style>
