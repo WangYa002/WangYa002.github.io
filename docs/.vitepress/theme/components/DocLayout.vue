@@ -58,7 +58,7 @@ import Logo from './Logo.vue'
   align-items: center;
   justify-content: flex-start;
   gap: 3rem;
-  padding-top: 0.75rem;
+  padding-top: 0.25rem;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -73,8 +73,8 @@ import Logo from './Logo.vue'
 /* Logo 使用绝对定位放在容器右侧 */
 .custom-hero-wrapper {
   position: absolute;
-  right: 18%;
-  top: 19%;
+  right: 19%;
+  top: 16%;
   width: 280px;
   flex-shrink: 0;
 }
