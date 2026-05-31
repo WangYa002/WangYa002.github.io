@@ -73,8 +73,8 @@ import Logo from './Logo.vue'
 /* Logo 使用绝对定位放在容器右侧 */
 .custom-hero-wrapper {
   position: absolute;
-  right: -2rem;
-  top: -2rem;
+  right: 15%;
+  top: 25%;
   width: 280px;
   flex-shrink: 0;
 }
