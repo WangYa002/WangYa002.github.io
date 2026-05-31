@@ -27,17 +27,18 @@ import Logo from './Logo.vue'
 .page-views {
   margin-bottom: 1rem;
 }
+
 :deep(.nav-logo) {
   width: 40px;
   height: 40px;
   margin-right: 8px;
   cursor: pointer;
 }
+
 :deep(.home-hero-logo) {
   width: 240px;
   height: 240px;
   display: block;
-  margin: 0 auto;
   filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
   animation: heroLogoFloat 4s ease-in-out infinite;
 }
@@ -50,6 +51,7 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
+  margin-top: 2rem;
 }
 
 :deep(.VPHero .image) {
@@ -58,6 +60,8 @@ import Logo from './Logo.vue'
   justify-content: center;
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 10;
 }
 
 :deep(.VPHero .image-container) {
@@ -66,5 +70,10 @@ import Logo from './Logo.vue'
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+:deep(.VPNavBar) {
+  z-index: 100;
+  position: relative;
 }
 </style>

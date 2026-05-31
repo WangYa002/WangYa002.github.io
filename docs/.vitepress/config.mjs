@@ -11,7 +11,7 @@ export default {
   // Head 标签（SEO）
   head: [
     // SVG 图标
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo2.png' }],,
     // RSS 订阅
     ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
@@ -28,6 +28,7 @@ export default {
     ['meta', { name: 'Baiduid', content: '' }],
     // Sitemap
     ['link', { rel: 'sitemap', type: 'application/xml', title: 'Sitemap', href: '/sitemap.xml' }],
+
   ],
 
   // 主题配置
