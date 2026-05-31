@@ -51,18 +51,31 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
-  margin-top: 0.5rem;
+}
+
+:deep(.VPHero .container) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4rem;
   padding-top: 1rem;
+  position: relative;
+}
+
+:deep(.VPHero .main) {
+  margin-top: 0;
+  flex: 1;
 }
 
 :deep(.VPHero .image) {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  width: 280px;
   height: 100%;
   position: relative;
   z-index: 10;
+  margin-top: -2rem;
 }
 
 :deep(.VPHero .image-container) {
@@ -77,4 +90,3 @@ import Logo from './Logo.vue'
   z-index: 100;
   position: relative;
 }
-</style>
