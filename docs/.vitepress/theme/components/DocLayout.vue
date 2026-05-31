@@ -58,7 +58,7 @@ import Logo from './Logo.vue'
   align-items: center;
   justify-content: flex-start;
   gap: 3rem;
-  padding-top: 0rem;
+  padding-top: -3rem;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
