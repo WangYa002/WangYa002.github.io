@@ -63,7 +63,7 @@ import Logo from './Logo.vue'
 }
 
 :deep(.VPHero .main) {
-  margin-top: 0;
+  margin-top: -1.5rem;
   flex: 1;
 }
 
@@ -75,7 +75,7 @@ import Logo from './Logo.vue'
   height: 100%;
   position: relative;
   z-index: 10;
-  margin-top: -2rem;
+  margin-top: 1rem;
 }
 
 :deep(.VPHero .image-container) {
