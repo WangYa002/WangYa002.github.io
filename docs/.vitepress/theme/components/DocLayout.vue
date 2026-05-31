@@ -50,7 +50,6 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
-  min-height: 300px;
 }
 
 :deep(.VPHero .container) {
@@ -58,14 +57,15 @@ import Logo from './Logo.vue'
   align-items: center;
   justify-content: flex-start;
   gap: 3rem;
-  padding-top: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 :deep(.VPHero .main) {
-  margin-top: -1rem;
+  margin-top: 0;
   flex: 1;
   max-width: calc(100% - 320px);
 }
@@ -74,7 +74,7 @@ import Logo from './Logo.vue'
 .custom-hero-wrapper {
   position: absolute;
   right: 26%;
-  top: 5%;
+  top: 0;
   width: 280px;
   flex-shrink: 0;
 }
