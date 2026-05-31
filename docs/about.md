@@ -38,8 +38,8 @@ outline: [2, 3]
 
 ## 📬 联系我
 
-- **GitHub**: [your-github](https://github.com/your-github)
-- **Email**: your.email@example.com
+- **GitHub**: [WangYa002.github](https://github.com/WangYa002)
+- **Email**: hwy64655@163.com
 
 ---
 

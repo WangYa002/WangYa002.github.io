@@ -51,7 +51,8 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
 }
 
 :deep(.VPHero .image) {
