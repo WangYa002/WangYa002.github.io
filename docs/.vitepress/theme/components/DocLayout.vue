@@ -76,6 +76,10 @@ import Logo from './Logo.vue'
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%);
   margin-left: 3rem;
 }
 
