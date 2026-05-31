@@ -75,7 +75,7 @@ import Logo from './Logo.vue'
   position: absolute;
   right: 0;
   top: 30%;
-  transform: translateY(-50%);
+  transform: translateY(-0%);
   width: 280px;
   flex-shrink: 0;
 }
