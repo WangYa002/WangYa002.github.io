@@ -33,7 +33,7 @@ export default {
   // 主题配置
   themeConfig: {
     // Logo
-    logo: '/logo.svg',
+    // logo: '/logo.svg',
     // 导航栏
     nav: [
       { text: "首页", link: "/" },
