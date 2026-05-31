@@ -57,7 +57,7 @@ import Logo from './Logo.vue'
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
@@ -74,7 +74,7 @@ import Logo from './Logo.vue'
 .custom-hero-wrapper {
   flex-shrink: 0;
   position: absolute;
-  top: 15%;
+  top: 35%;
   right: 10%;
   transform: translate(0, 0);
 }
