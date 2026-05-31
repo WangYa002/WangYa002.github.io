@@ -73,7 +73,7 @@ import Logo from './Logo.vue'
 .custom-hero-wrapper {
   position: relative;
   right: 26%;
-  top: 10%;
+  top: 50%;
   width: 280px;
   flex-shrink: 0;
 }
