@@ -4,8 +4,12 @@
       <Logo class="nav-logo" />
     </template>
     <template #home-hero-after>
-      <div class="custom-hero-image">
-        <Logo class="home-hero-logo" />
+      <div class="custom-hero-wrapper">
+        <div class="custom-hero-content">
+          <div class="custom-hero-logo-wrapper">
+            <Logo class="home-hero-logo" />
+          </div>
+        </div>
       </div>
     </template>
     <template #doc-footer-before>
@@ -55,10 +59,10 @@ import Logo from './Logo.vue'
 
 :deep(.VPHero .container) {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  gap: 4rem;
-  padding-top: 0.5rem;
+  gap: 3rem;
+  padding-top: 0.75rem; /* Hero离导航栏近一点 */
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -67,19 +71,30 @@ import Logo from './Logo.vue'
 :deep(.VPHero .main) {
   margin-top: 0;
   flex: 1;
-  max-width: calc(100% - 320px);
+  max-width: calc(100% - 280px);
 }
 
-.custom-hero-image {
-  position: absolute;
-  right: max(0px, calc((100vw - 1200px) / 2));
-  top: 50%;
-  transform: translateY(-50%);
+.custom-hero-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 280px;
+  flex-shrink: 0;
+  padding-top: 1.5rem; /* Logo离导航栏更远 */
+}
+
+.custom-hero-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
-  z-index: 10;
+  width: 100%;
+}
+
+:deep(.home-hero-logo) {
+  width: 240px;
+  height: 240px;
+  display: block;
+  filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
+  animation: heroLogoFloat 4s ease-in-out infinite;
 }
 
 :deep(.VPHero .image) {
