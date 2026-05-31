@@ -39,11 +39,8 @@ features2:
     details: 输入关键词快速找到文章
 ---
 
-<Logo class="home-logo" />
-
 <script setup>
 import { ref } from 'vue'
-import Logo from './.vitepress/theme/components/Logo.vue'
 
 const stats = ref({
   posts: 10,
@@ -95,18 +92,6 @@ function getCategoryColor(category) {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-start;
-}
-
-/* ============================================
-   Home Logo
-   ============================================ */
-.home-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 2rem;
 }
 
 /* ============================================
