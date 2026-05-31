@@ -35,8 +35,8 @@ import Logo from './Logo.vue'
 }
 
 :deep(.home-hero-logo) {
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   display: block;
   filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
   animation: heroLogoFloat 4s ease-in-out infinite;
@@ -71,7 +71,7 @@ import Logo from './Logo.vue'
 
 /* Logo 使用绝对定位放在容器右侧 */
 .custom-hero-wrapper {
-  position: absolute;
+  position: relative;
   right: 26%;
   top: 10%;
   width: 280px;
