@@ -35,8 +35,8 @@ import Logo from './Logo.vue'
 }
 
 :deep(.home-hero-logo) {
-  width: 240px;
-  height: 240px;
+  width: 300px;
+  height: 300px;
   display: block;
   filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
   animation: heroLogoFloat 4s ease-in-out infinite;
