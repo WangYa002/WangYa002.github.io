@@ -5,11 +5,7 @@
     </template>
     <template #home-hero-after>
       <div class="custom-hero-wrapper">
-        <div class="custom-hero-content">
-          <div class="custom-hero-logo-wrapper">
-            <Logo class="home-hero-logo" />
-          </div>
-        </div>
+        <Logo class="home-hero-logo" />
       </div>
     </template>
     <template #doc-footer-before>
@@ -54,15 +50,15 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
-  min-height: 240px;
+  min-height: 300px;
 }
 
 :deep(.VPHero .container) {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 3rem;
-  padding-top: 0.75rem; /* Hero离导航栏近一点 */
+  padding-top: 0.75rem;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -71,30 +67,17 @@ import Logo from './Logo.vue'
 :deep(.VPHero .main) {
   margin-top: 0;
   flex: 1;
-  max-width: calc(100% - 280px);
+  max-width: calc(100% - 320px);
 }
 
+/* Logo 使用绝对定位放在容器右侧 */
 .custom-hero-wrapper {
-  display: flex;
-  align-items: flex-start;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 280px;
   flex-shrink: 0;
-  padding-top: 1.5rem; /* Logo离导航栏更远 */
-}
-
-.custom-hero-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-:deep(.home-hero-logo) {
-  width: 240px;
-  height: 240px;
-  display: block;
-  filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
-  animation: heroLogoFloat 4s ease-in-out infinite;
 }
 
 :deep(.VPHero .image) {
