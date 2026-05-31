@@ -65,7 +65,7 @@ import Logo from './Logo.vue'
 }
 
 :deep(.VPHero .main) {
-  margin-top: 0;
+  margin-top: -1rem;
   flex: 1;
   max-width: calc(100% - 320px);
 }
