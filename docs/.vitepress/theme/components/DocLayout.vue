@@ -55,7 +55,7 @@ import Logo from './Logo.vue'
 :deep(.VPHero .container) {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 2rem;
   padding-top: 0.5rem;
   position: relative;
@@ -67,15 +67,20 @@ import Logo from './Logo.vue'
   margin-top: 0;
   flex: 1;
   min-width: 0;
+  max-width: calc(100% - 300px);
 }
 
-/* Logo 容器 - 使用 Flexbox 布局 */
+/* Logo 容器 - 使用绝对定位放在右侧 */
 .custom-hero-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 300px;
 }
 
 :deep(.VPHero .image) {
@@ -127,8 +132,12 @@ import Logo from './Logo.vue'
   
   .custom-hero-wrapper {
     order: 2;
+    position: relative;
     width: 100%;
     margin-top: 1.5rem;
+    right: auto;
+    top: auto;
+    transform: none;
   }
   
   :deep(.home-hero-logo) {
