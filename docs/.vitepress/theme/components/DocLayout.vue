@@ -35,8 +35,8 @@ import Logo from './Logo.vue'
 }
 
 :deep(.home-hero-logo) {
-  width: 280px;
-  height: 280px;
+  width: 600px;
+  height: 600px;
   display: block;
   filter: drop-shadow(0 8px 40px rgba(198, 107, 61, 0.3));
   animation: heroLogoFloat 4s ease-in-out infinite;
@@ -55,11 +55,11 @@ import Logo from './Logo.vue'
 :deep(.VPHero .container) {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: center;
+  gap: 3rem;
   padding-top: 0.5rem;
   position: relative;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -67,20 +67,16 @@ import Logo from './Logo.vue'
   margin-top: 0;
   flex: 1;
   min-width: 0;
-  max-width: calc(100% - 300px);
+  text-align: center;
 }
 
-/* Logo 容器 - 使用绝对定位放在右侧 */
+/* Logo 容器 - 使用 Flexbox 布局居中 */
 .custom-hero-wrapper {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 300px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 3rem;
 }
 
 :deep(.VPHero .image) {
@@ -107,12 +103,12 @@ import Logo from './Logo.vue'
   }
   
   :deep(.home-hero-logo) {
-    width: 240px;
-    height: 240px;
+    width: 500px;
+    height: 500px;
   }
   
   .custom-hero-wrapper {
-    width: 260px;
+    width: 100%;
   }
 }
 
@@ -132,17 +128,14 @@ import Logo from './Logo.vue'
   
   .custom-hero-wrapper {
     order: 2;
-    position: relative;
     width: 100%;
     margin-top: 1.5rem;
-    right: auto;
-    top: auto;
-    transform: none;
+    margin-left: 0;
   }
   
   :deep(.home-hero-logo) {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
   }
   
   :deep(.VPHero .actions) {
@@ -153,8 +146,8 @@ import Logo from './Logo.vue'
 /* 小屏移动端 (< 480px) */
 @media (max-width: 480px) {
   :deep(.home-hero-logo) {
-    width: 160px;
-    height: 160px;
+    width: 280px;
+    height: 280px;
   }
   
   .custom-hero-wrapper {
