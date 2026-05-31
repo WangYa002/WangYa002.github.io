@@ -54,10 +54,10 @@ import Logo from './Logo.vue'
 
 :deep(.VPHero .container) {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 4rem;
-  padding-top: 2rem;
+  padding-top: 0.5rem;
   position: relative;
 }
 
@@ -68,12 +68,12 @@ import Logo from './Logo.vue'
 
 .custom-hero-image {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 280px;
   position: relative;
   z-index: 10;
-  margin-top: -3rem;
+  margin-top: 0;
 }
 
 :deep(.VPHero .image) {
