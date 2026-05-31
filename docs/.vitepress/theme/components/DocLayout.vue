@@ -50,30 +50,36 @@ import Logo from './Logo.vue'
 :deep(.VPHero) {
   position: relative;
   overflow: visible;
+  min-height: 240px;
 }
 
 :deep(.VPHero .container) {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 4rem;
   padding-top: 0.5rem;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 :deep(.VPHero .main) {
   margin-top: 0;
   flex: 1;
+  max-width: calc(100% - 320px);
 }
 
 .custom-hero-image {
+  position: absolute;
+  right: max(0px, calc((100vw - 1200px) / 2));
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 280px;
-  position: relative;
   z-index: 10;
-  margin-top: 0;
 }
 
 :deep(.VPHero .image) {
