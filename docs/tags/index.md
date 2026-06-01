@@ -129,22 +129,22 @@ title: 标签云
       <span class="pill-name">DevOps</span>
       <span class="pill-count">2 篇</span>
     </a>
-    <a href="/tags/interview/" class="tag-pill tag-backend">
+    <a href="/tags/interview/" class="tag-pill tag-interview">
       <span class="pill-icon">📚</span>
       <span class="pill-name">八股文</span>
       <span class="pill-count">1 篇</span>
     </a>
-    <a href="/tags/algorithm/" class="tag-pill tag-backend">
+    <a href="/tags/algorithm/" class="tag-pill tag-algorithm">
       <span class="pill-icon">🧮</span>
       <span class="pill-name">算法</span>
       <span class="pill-count">1 篇</span>
     </a>
-    <a href="/tags/project/" class="tag-pill tag-frontend">
+    <a href="/tags/project/" class="tag-pill tag-project">
       <span class="pill-icon">🚀</span>
       <span class="pill-name">项目经历</span>
       <span class="pill-count">1 篇</span>
     </a>
-    <a href="/tags/golang/" class="tag-pill tag-backend">
+    <a href="/tags/golang/" class="tag-pill tag-golang">
       <span class="pill-icon">🐹</span>
       <span class="pill-name">GOlang&C++</span>
       <span class="pill-count">1 篇</span>

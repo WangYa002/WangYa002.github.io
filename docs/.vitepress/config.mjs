@@ -11,7 +11,7 @@ export default {
   // Head 标签（SEO）
   head: [
     // SVG 图标
-    ['link', { rel: 'icon', type: 'image/png', href: '/logo2.png' }],,
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo2.png' }],
     // RSS 订阅
     ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
@@ -25,7 +25,8 @@ export default {
     // Apple 图标
     ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
     // 禁止百度转码
-    ['meta', { name: 'Baiduid', content: '' }],
+    ['meta', { name: 'applicable-device', content: 'pc,mobile' }],
+    ['meta', { name: 'Cache-Control', content: 'no-transform' }],
     // Sitemap
     ['link', { rel: 'sitemap', type: 'application/xml', title: 'Sitemap', href: '/sitemap.xml' }],
 
@@ -46,7 +47,7 @@ export default {
 
     // 社交链接
     socialLinks: [
-      { icon: "github", link: "https://github.com/your-github" }
+      { icon: "github", link: "https://github.com/WangYa002" }
     ],
 
     // 搜索配置（可选：本地搜索或 Algolia）
@@ -165,14 +166,13 @@ export default {
     darkModeSwitch: true,
 
     // 返回顶部
-    backToTop: true,
+    // backToTop is default in VitePress
 
     // 移动端菜单
     mobileMenuLabel: '菜单',
 
     // 内容宽度配置
-    appearances: ['light', 'dark'],
-    docVersion: ''
+    appearances: ['light', 'dark']
   },
 
   // Markdown 配置
@@ -182,20 +182,11 @@ export default {
 
   // Vite 相关配置
   vite: {
-    css: {
-      preprocessorOptions: {}
-    },
     build: {
-      // 启用 CSS 代码分割
-      cssCodeSplit: true,
-      // 启用 rollup 压缩
-      minify: 'esbuild',
-      // 资源内联阈值
       assetsInlineLimit: 4096
     },
-    // 优化
     optimizeDeps: {
-      include: ['vue', 'vitepress']
+      include: ['vue']
     }
   },
 

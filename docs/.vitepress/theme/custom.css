@@ -1183,6 +1183,10 @@
 .VPPage .tags-page .tag-frontend:hover { border-color: #C66B3D; }
 .VPPage .tags-page .tag-backend:hover { border-color: #606C38; }
 .VPPage .tags-page .tag-devops:hover { border-color: #B08B6E; }
+.VPPage .tags-page .tag-interview:hover { border-color: #C66B3D; }
+.VPPage .tags-page .tag-algorithm:hover { border-color: #606C38; }
+.VPPage .tags-page .tag-project:hover { border-color: #C66B3D; }
+.VPPage .tags-page .tag-golang:hover { border-color: #606C38; }
 
 .VPPage .tags-page .pill-icon { font-size: 1.1rem; }
 

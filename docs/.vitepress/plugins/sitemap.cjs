@@ -1,7 +1,9 @@
 const { writeFileSync, existsSync, mkdirSync } = require('fs')
 const { resolve } = require('path')
 
-const posts = [
+const baseUrl = 'https://WangYa002.github.io'
+
+const pages = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
   { url: '/posts/', priority: '0.9', changefreq: 'weekly' },
   { url: '/tags/', priority: '0.8', changefreq: 'weekly' },
@@ -15,17 +17,34 @@ const posts = [
   { url: '/posts/docker-basics', priority: '0.8', changefreq: 'monthly' },
   { url: '/posts/deployment-guide', priority: '0.8', changefreq: 'monthly' },
   { url: '/posts/first-blog', priority: '0.6', changefreq: 'monthly' },
+  { url: '/posts/八股文-1', priority: '0.8', changefreq: 'monthly' },
+  { url: '/posts/算法-1', priority: '0.8', changefreq: 'monthly' },
+  { url: '/posts/aas-1', priority: '0.8', changefreq: 'monthly' },
+  { url: '/posts/golang-1', priority: '0.8', changefreq: 'monthly' },
+  { url: '/tags/frontend/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/backend/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/vue/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/typescript/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/nodejs/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/css/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/git/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/docker/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/devops/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/interview/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/algorithm/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/project/', priority: '0.6', changefreq: 'monthly' },
+  { url: '/tags/golang/', priority: '0.6', changefreq: 'monthly' },
 ]
 
-function generateSitemap(posts, baseUrl) {
+function generateSitemap() {
   const today = new Date().toISOString().split('T')[0]
 
-  const urls = posts.map(post => `
+  const urls = pages.map(page => `
   <url>
-    <loc>${baseUrl}${post.url}</loc>
+    <loc>${baseUrl}${page.url}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>${post.changefreq}</changefreq>
-    <priority>${post.priority}</priority>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
   </url>`).join('')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -34,19 +53,15 @@ ${urls}
 </urlset>`
 }
 
-const baseUrl = 'https://your-domain.com' // 修改为你的域名
-const sitemapXml = generateSitemap(posts, baseUrl)
-
-const distDir = 'D:/BLOG_WANGYANG/docs/.vitepress/dist'
+const distDir = resolve(__dirname, '../../.vitepress/dist')
 
 if (!existsSync(distDir)) {
   mkdirSync(distDir, { recursive: true })
 }
 
-const sitemapPath = resolve(distDir, 'sitemap.xml')
-
 try {
-  writeFileSync(sitemapPath, sitemapXml)
+  writeFileSync(resolve(distDir, 'sitemap.xml'), generateSitemap())
+  console.log('Sitemap generated at sitemap.xml')
 } catch (e) {
-  // Silent fail
+  console.error('Failed to generate sitemap:', e.message)
 }

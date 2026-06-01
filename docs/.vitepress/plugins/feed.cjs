@@ -1,58 +1,24 @@
-const { writeFileSync, mkdirSync, existsSync } = require('fs')
+const { writeFileSync, existsSync, mkdirSync } = require('fs')
 const { resolve } = require('path')
 
+const baseUrl = 'https://WangYa002.github.io'
+
 const posts = [
-  {
-    title: 'Vue3 组合式API完全指南',
-    date: '2026-05-01',
-    description: '深入理解Vue3组合式API的核心概念和使用方法',
-    url: '/posts/vue3-composition-api'
-  },
-  {
-    title: 'TypeScript 入门指南',
-    date: '2026-04-20',
-    description: 'TypeScript基础类型、接口、泛型等核心概念详解',
-    url: '/posts/typescript-basics'
-  },
-  {
-    title: 'Node.js + Express 快速构建REST API',
-    date: '2026-04-15',
-    description: '使用Node.js和Express快速搭建RESTful API',
-    url: '/posts/nodejs-express-api'
-  },
-  {
-    title: 'Git 常用命令速查表',
-    date: '2026-04-10',
-    description: '日常开发中常用的Git命令，涵盖分支管理、版本控制、协作等场景',
-    url: '/posts/git-commands'
-  },
-  {
-    title: 'CSS Flexbox 布局详解',
-    date: '2026-04-05',
-    description: '详解Flexbox布局的核心概念，包括容器属性和项目属性',
-    url: '/posts/css-flexbox'
-  },
-  {
-    title: 'Docker 入门教程',
-    date: '2026-03-28',
-    description: 'Docker基础概念、常用命令，以及如何用Docker部署应用',
-    url: '/posts/docker-basics'
-  },
-  {
-    title: '前后端分离项目部署指南',
-    date: '2026-03-20',
-    description: '如何将前后端分离的项目部署到服务器，包括Nginx配置和反向代理',
-    url: '/posts/deployment-guide'
-  },
-  {
-    title: '我的第一篇博客',
-    date: '2026-04-05',
-    description: '这是用 VitePress 官方模板写的第一篇文章，极简稳定！',
-    url: '/posts/first-blog'
-  }
+  { title: 'Vue3 组合式API完全指南', date: '2026-05-01', description: '深入理解Vue3组合式API的核心概念和使用方法', url: '/posts/vue3-composition-api' },
+  { title: 'TypeScript 入门指南', date: '2026-04-20', description: 'TypeScript基础类型、接口、泛型等核心概念详解', url: '/posts/typescript-basics' },
+  { title: 'Node.js + Express 快速构建REST API', date: '2026-04-15', description: '使用Node.js和Express快速搭建RESTful API', url: '/posts/nodejs-express-api' },
+  { title: 'Git 常用命令速查表', date: '2026-04-10', description: '日常开发中常用的Git命令，涵盖分支管理、版本控制、协作等场景', url: '/posts/git-commands' },
+  { title: 'CSS Flexbox 布局详解', date: '2026-04-05', description: '详解Flexbox布局的核心概念，包括容器属性和项目属性', url: '/posts/css-flexbox' },
+  { title: 'Docker 入门教程', date: '2026-03-28', description: 'Docker基础概念、常用命令，以及如何用Docker部署应用', url: '/posts/docker-basics' },
+  { title: '前后端分离项目部署指南', date: '2026-03-20', description: '如何将前后端分离的项目部署到服务器，包括Nginx配置和反向代理', url: '/posts/deployment-guide' },
+  { title: '我的第一篇博客', date: '2026-04-05', description: '这是用 VitePress 官方模板写的第一篇文章，极简稳定！', url: '/posts/first-blog' },
+  { title: 'HTTP与TCP：面试必备知识点', date: '2026-05-10', description: '梳理HTTP与TCP协议的核心知识点，助你轻松应对面试', url: '/posts/八股文-1' },
+  { title: '两数之和：算法入门第一题', date: '2026-05-10', description: '详解LeetCode第一题两数之和的多种解法', url: '/posts/算法-1' },
+  { title: 'AAS项目介绍：企业级身份认证系统', date: '2026-05-10', description: '介绍我参与开发的企业级身份认证与授权系统', url: '/posts/aas-1' },
+  { title: 'Go语言环境搭建与快速入门', date: '2026-05-10', description: '从零搭建Go开发环境，快速入门Go语言编程', url: '/posts/golang-1' }
 ]
 
-function generateRSS(posts, baseUrl) {
+function generateRSS() {
   const now = new Date().toISOString()
 
   const items = posts
@@ -80,21 +46,15 @@ function generateRSS(posts, baseUrl) {
 </rss>`
 }
 
-// Generate RSS feed
-const baseUrl = 'https://your-domain.com' // 修改为你的域名
-const rssXml = generateRSS(posts, baseUrl)
+const distDir = resolve(__dirname, '../../.vitepress/dist')
 
-// 输出到 docs/.vitepress/dist/ 目录
-const distDir = 'D:/BLOG_WANGYANG/docs/.vitepress/dist'
-const feedPath = resolve(distDir, 'feed.xml')
-
-// Ensure dist directory exists
 if (!existsSync(distDir)) {
   mkdirSync(distDir, { recursive: true })
 }
 
 try {
-  writeFileSync(feedPath, rssXml)
+  writeFileSync(resolve(distDir, 'feed.xml'), generateRSS())
+  console.log('RSS feed generated at feed.xml')
 } catch (e) {
-  // Silent fail
+  console.error('Failed to generate RSS feed:', e.message)
 }

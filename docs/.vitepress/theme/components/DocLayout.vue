@@ -10,14 +10,12 @@
     </template>
     <template #doc-footer-before>
       <Busuanzi class="page-views" />
-      <GiscusComment />
     </template>
   </DefaultTheme.Layout>
 </template>
 
 <script setup>
 import DefaultTheme from 'vitepress/theme'
-import GiscusComment from './GiscusComment.vue'
 import Busuanzi from './Busuanzi.vue'
 import Logo from './Logo.vue'
 </script>

@@ -84,11 +84,6 @@ title: 文章列表
 <span class="post-name">Node.js + Express 快速构建REST API</span>
 <span class="post-date">2026-04-15</span>
 </a>
-<a href="/posts/golang-1" class="post-row">
-<span class="post-icon">🐹</span>
-<span class="post-name">Go语言环境搭建与快速入门</span>
-<span class="post-date">2026-05-10</span>
-</a>
 </div>
 </div>
 <div class="category-block">

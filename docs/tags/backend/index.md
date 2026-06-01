@@ -9,8 +9,8 @@ title: 后端
 
 ## 文章列表
 
-| 标题 | 日期 | 标签 |
+| 标题 | 日期 | 描述 |
 |------|------|------|
-| [Node.js + Express 快速构建REST API](/posts/nodejs-express-api) | 2026-04-15 | Node.js, 后端, Express |
+| [Node.js + Express 快速构建REST API](/posts/nodejs-express-api) | 2026-04-15 | 使用Node.js和Express快速搭建RESTful API |
 
 返回 [标签页](/tags/)

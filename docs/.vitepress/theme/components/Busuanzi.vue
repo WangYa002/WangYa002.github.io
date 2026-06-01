@@ -27,28 +27,14 @@ defineProps({
 const pageViews = ref(0)
 
 onMounted(() => {
-  // 动态加载不蒜子脚本
+  if (document.getElementById('busuanzi_script')) return
+
   const script = document.createElement('script')
+  script.id = 'busuanzi_script'
   script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
   script.async = true
   document.body.appendChild(script)
-
-  // 监听脚本加载完成
-  script.onload = () => {
-    updateViews()
-  }
 })
-
-function updateViews() {
-  // 等待不蒜子初始化
-  setTimeout(() => {
-    const pvElement = document.getElementById('busuanzi_value_page_pv')
-    const uvElement = document.getElementById('busuanzi_value_site_uv')
-    if (pvElement && pvElement.innerText) {
-      pageViews.value = parseInt(pvElement.innerText)
-    }
-  }, 500)
-}
 </script>
 
 <style scoped>
