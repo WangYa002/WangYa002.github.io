@@ -11,6 +11,9 @@
     <template #doc-footer-before>
       <Busuanzi class="page-views" />
     </template>
+    <template #layout-top>
+      <IntroAnimation />
+    </template>
   </DefaultTheme.Layout>
 </template>
 
@@ -18,6 +21,7 @@
 import DefaultTheme from 'vitepress/theme'
 import Busuanzi from './Busuanzi.vue'
 import Logo from './Logo.vue'
+import IntroAnimation from './IntroAnimation.vue'
 </script>
 
 <style scoped>

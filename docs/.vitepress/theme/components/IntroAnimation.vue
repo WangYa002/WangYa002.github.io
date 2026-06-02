@@ -1,10 +1,10 @@
 <template>
   <div class="intro-wrapper" v-show="visible">
-    <!-- Canvas for particle scatter -->
-    <canvas ref="canvasRef" class="scatter-canvas" v-show="scattering"></canvas>
+    <!-- Canvas for curtain-opening effect -->
+    <canvas ref="canvasRef" class="effect-canvas" v-show="animating"></canvas>
 
     <!-- Solid dark overlay -->
-    <div class="intro-overlay" v-show="!scattering"></div>
+    <div class="intro-overlay" v-show="!animating"></div>
 
     <!-- Center content -->
     <div class="intro-center" :class="{ 'center-exit': exiting }">
@@ -59,11 +59,11 @@
 </template>
 
 <script setup>
-import { ref, nextTick, onUnmounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 
 const visible = ref(false)
 const exiting = ref(false)
-const scattering = ref(false)
+const animating = ref(false)
 const canvasRef = ref(null)
 let animId = null
 
@@ -74,10 +74,10 @@ if (typeof window !== 'undefined' && !sessionStorage.getItem('intro_shown')) {
 function handleEnter() {
   exiting.value = true
   sessionStorage.setItem('intro_shown', '1')
-  setTimeout(startScatter, 600)
+  setTimeout(startCurtainOpen, 500)
 }
 
-function startScatter() {
+function startCurtainOpen() {
   const cvs = canvasRef.value
   if (!cvs) { visible.value = false; return }
 
@@ -91,69 +91,121 @@ function startScatter() {
   const ctx = cvs.getContext('2d')
   ctx.scale(dpr, dpr)
 
-  scattering.value = true
-
-  const TILE = 26
-  const cols = Math.ceil(w / TILE)
-  const rows = Math.ceil(h / TILE)
+  animating.value = true
   const cx = w / 2
   const cy = h / 2
-  const maxDist = Math.sqrt(cx * cx + cy * cy)
 
-  const tiles = []
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const x = c * TILE
-      const y = r * TILE
-      const px = x + TILE / 2
-      const py = y + TILE / 2
-      const dx = px - cx
-      const dy = py - cy
-      const dist = Math.sqrt(dx * dx + dy * dy)
-      const angle = Math.atan2(dy, dx)
-      const norm = dist / maxDist
+  // Particle types
+  const WARM_COLORS = ['#C66B3D', '#B08B6E', '#D4B895', '#E8DCC7', '#606C38']
 
-      const rv = 31 + Math.floor(Math.random() * 14)
-      const gv = 28 + Math.floor(Math.random() * 14)
-      const bv = 24 + Math.floor(Math.random() * 10)
+  // Curtain-edge particles: burst from center vertical seam
+  const particles = []
+  for (let i = 0; i < 350; i++) {
+    const angle = (Math.random() - 0.5) * Math.PI * 1.8
+    const speed = 180 + Math.random() * 520
+    const rnd = Math.random()
+    let shape, size, color
 
-      // ~5% of tiles get brand-color tint
-      const isAccent = Math.random() < 0.05
-      const color = isAccent
-        ? `rgb(${56 + Math.floor(Math.random() * 10)},${40 + Math.floor(Math.random() * 8)},${30 + Math.floor(Math.random() * 6)})`
-        : `rgb(${rv},${gv},${bv})`
-
-      tiles.push({
-        x, y, size: TILE,
-        vx: Math.cos(angle + (Math.random() - 0.5) * 0.5) * (200 + Math.random() * 280),
-        vy: Math.sin(angle + (Math.random() - 0.5) * 0.5) * (200 + Math.random() * 280) - 80,
-        rotSpeed: (Math.random() - 0.5) * 8,
-        delay: norm * 0.4 + Math.random() * 0.12,
-        color,
-        grav: 140 + Math.random() * 100,
-        isAccent
-      })
+    if (rnd < 0.3) {
+      // Glowing ember circle
+      shape = 'circle'
+      size = 2 + Math.random() * 5
+      color = WARM_COLORS[Math.floor(Math.random() * 3)]
+    } else if (rnd < 0.5) {
+      // Diamond sparkle
+      shape = 'diamond'
+      size = 3 + Math.random() * 5
+      color = '#E8DCC7'
+    } else if (rnd < 0.7) {
+      // Tiny trail dot
+      shape = 'dot'
+      size = 1 + Math.random() * 2
+      color = WARM_COLORS[Math.floor(Math.random() * WARM_COLORS.length)]
+    } else {
+      // Fragment piece (curtain material breaking)
+      shape = 'fragment'
+      size = 5 + Math.random() * 12
+      const rv = 31 + Math.floor(Math.random() * 18)
+      const gv = 28 + Math.floor(Math.random() * 18)
+      const bv = 24 + Math.floor(Math.random() * 12)
+      color = `rgb(${rv},${gv},${bv})`
     }
+
+    const side = Math.random() > 0.5 ? 1 : -1
+    particles.push({
+      x: cx + (Math.random() - 0.5) * 40,
+      y: Math.random() * h,
+      vx: Math.cos(angle) * speed * side * (0.4 + Math.abs(Math.cos(angle))),
+      vy: (Math.random() - 0.5) * 300 - 60,
+      size,
+      shape,
+      color,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 8,
+      delay: Math.random() * 0.35,
+      grav: 40 + Math.random() * 80,
+      opacity: 1
+    })
   }
 
-  // Bright spark particles
+  // Bright sparks (fast, small, glowing)
   const sparks = []
-  for (let i = 0; i < 90; i++) {
-    const angle = Math.random() * Math.PI * 2
-    const speed = 250 + Math.random() * 450
+  for (let i = 0; i < 80; i++) {
+    const angle = (Math.random() - 0.5) * Math.PI
+    const speed = 300 + Math.random() * 500
+    const side = Math.random() > 0.5 ? 1 : -1
     sparks.push({
-      x: cx + (Math.random() - 0.5) * 80,
-      y: cy + (Math.random() - 0.5) * 80,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed - 100,
-      size: 1.5 + Math.random() * 2.5,
-      delay: 0.06 + Math.random() * 0.22,
+      x: cx + (Math.random() - 0.5) * 30,
+      y: Math.random() * h,
+      vx: Math.cos(angle) * speed * side,
+      vy: Math.sin(angle) * speed * 0.3 - 50,
+      size: 1 + Math.random() * 2,
+      delay: 0.03 + Math.random() * 0.2,
       color: Math.random() > 0.4 ? '#C66B3D' : '#D4B895',
-      grav: 80 + Math.random() * 60
+      grav: 30 + Math.random() * 50
+    })
+  }
+
+  // Light rays
+  const rays = []
+  for (let i = 0; i < 14; i++) {
+    rays.push({
+      angle: (i / 14) * Math.PI * 2 + (Math.random() - 0.5) * 0.25,
+      width: 0.015 + Math.random() * 0.035,
+      length: 0.5 + Math.random() * 0.5,
+      delay: 0.08 + Math.random() * 0.15
+    })
+  }
+
+  // Seam sparkles (vertical line of twinkles)
+  const seamSparkles = []
+  for (let i = 0; i < 40; i++) {
+    seamSparkles.push({
+      y: Math.random() * h,
+      size: 1.5 + Math.random() * 3,
+      delay: Math.random() * 0.3,
+      drift: (Math.random() - 0.5) * 80,
+      life: 0.4 + Math.random() * 0.4
+    })
+  }
+
+  // Curtain edge dissolve: small particles emitted from curtain edges as they move
+  const edgeParticles = []
+  for (let i = 0; i < 60; i++) {
+    edgeParticles.push({
+      y: Math.random() * h,
+      size: 2 + Math.random() * 4,
+      delay: 0.1 + Math.random() * 0.5,
+      side: Math.random() > 0.5 ? 1 : -1,
+      speed: 20 + Math.random() * 60,
+      color: Math.random() > 0.5 ? '#1F1C18' : '#2A2620',
+      grav: 20 + Math.random() * 40,
+      opacity: 0.6 + Math.random() * 0.4
     })
   }
 
   let startTime = null
+  const CURTAIN_DURATION = 1.3
 
   function animate(ts) {
     if (!startTime) startTime = ts
@@ -162,73 +214,126 @@ function startScatter() {
     ctx.clearRect(0, 0, w, h)
     let anyVisible = false
 
-    // Tiles
-    for (const p of tiles) {
-      if (t < p.delay) {
-        ctx.globalAlpha = 0.95
-        ctx.fillStyle = p.color
-        ctx.fillRect(p.x, p.y, p.size, p.size)
-        anyVisible = true
-        continue
-      }
-      const pt = t - p.delay
-      const px = p.x + p.vx * pt
-      const py = p.y + p.vy * pt + 0.5 * p.grav * pt * pt
-      const rot = p.rotSpeed * pt
-      const opacity = Math.max(0, 1 - pt * 1.4)
+    // === CURTAIN HALVES ===
+    const curtainT = Math.min(1, t / CURTAIN_DURATION)
+    const eased = 1 - Math.pow(1 - curtainT, 3)
 
-      if (opacity > 0.01) {
-        anyVisible = true
+    if (eased < 0.99) {
+      anyVisible = true
+      const gap = eased * (w / 2 + 80)
+
+      // Left curtain
+      ctx.save()
+      ctx.fillStyle = '#1F1C18'
+      ctx.fillRect(-80 - (1 - eased) * 20, 0, w / 2 - gap + 80, h)
+      // Soft gradient edge on right side of left curtain
+      const edgeX1 = w / 2 - gap
+      if (edgeX1 > 0) {
+        const eg1 = ctx.createLinearGradient(edgeX1 - 50, 0, edgeX1, 0)
+        eg1.addColorStop(0, 'rgba(31,28,24,0)')
+        eg1.addColorStop(1, 'rgba(31,28,24,0.9)')
+        ctx.fillStyle = eg1
+        ctx.fillRect(edgeX1 - 50, 0, 50, h)
+      }
+      ctx.restore()
+
+      // Right curtain
+      ctx.save()
+      ctx.fillStyle = '#1F1C18'
+      ctx.fillRect(w / 2 + gap, 0, w, h)
+      // Soft gradient edge on left side of right curtain
+      const edgeX2 = w / 2 + gap
+      if (edgeX2 < w) {
+        const eg2 = ctx.createLinearGradient(edgeX2, 0, edgeX2 + 50, 0)
+        eg2.addColorStop(0, 'rgba(31,28,24,0.9)')
+        eg2.addColorStop(1, 'rgba(31,28,24,0)')
+        ctx.fillStyle = eg2
+        ctx.fillRect(edgeX2, 0, 50, h)
+      }
+      ctx.restore()
+    }
+
+    // === EDGE DISSOLVE PARTICLES ===
+    for (const ep of edgeParticles) {
+      if (t < ep.delay) continue
+      const et = t - ep.delay
+      const gap = (1 - Math.pow(1 - Math.min(1, (t) / CURTAIN_DURATION), 3)) * (w / 2 + 80)
+      const ex = cx + ep.side * gap + ep.side * et * ep.speed
+      const ey = ep.y + 0.5 * ep.grav * et * et
+      const eOpacity = Math.max(0, ep.opacity - et * 1.5)
+
+      if (eOpacity > 0.01) {
         ctx.save()
-        ctx.translate(px + p.size / 2, py + p.size / 2)
-        ctx.rotate(rot)
-        ctx.globalAlpha = opacity
-        ctx.fillStyle = p.color
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
-        if (p.isAccent) {
-          ctx.fillStyle = 'rgba(198,107,61,0.15)'
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
-        }
+        ctx.globalAlpha = eOpacity
+        ctx.fillStyle = ep.color
+        ctx.beginPath()
+        ctx.arc(ex, ey, ep.size, 0, Math.PI * 2)
+        ctx.fill()
         ctx.restore()
       }
     }
 
-    // Sparks
-    for (const s of sparks) {
-      if (t < s.delay) continue
-      const st = t - s.delay
-      const sx = s.x + s.vx * st
-      const sy = s.y + s.vy * st + 0.5 * s.grav * st * st
-      const sOpacity = Math.max(0, 0.9 - st * 2.5)
+    // === CENTRAL FLASH ===
+    if (t < 0.5) {
+      const flashO = Math.max(0, 0.4 - t * 1.0)
+      const flashR = Math.max(1, t * 600)
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, flashR)
+      grad.addColorStop(0, `rgba(232,220,199,${flashO})`)
+      grad.addColorStop(0.3, `rgba(198,107,61,${flashO * 0.6})`)
+      grad.addColorStop(1, 'rgba(198,107,61,0)')
+      ctx.fillStyle = grad
+      ctx.fillRect(0, 0, w, h)
+    }
 
-      if (sOpacity > 0.01) {
-        ctx.globalAlpha = sOpacity
-        ctx.fillStyle = s.color
-        ctx.shadowColor = s.color
-        ctx.shadowBlur = 10
-        ctx.beginPath()
-        ctx.arc(sx, sy, s.size, 0, Math.PI * 2)
-        ctx.fill()
-        ctx.shadowBlur = 0
+    // === LIGHT RAYS ===
+    if (t > 0.1 && t < 1.6) {
+      const rayBase = t - 0.1
+      const rayFadeIn = Math.min(1, rayBase * 3)
+      const rayFadeOut = Math.max(0, 1 - Math.max(0, rayBase - 0.8) * 2.5)
+      const rayOpacity = rayFadeIn * rayFadeOut * 0.25
+
+      if (rayOpacity > 0.01) {
+        for (const ray of rays) {
+          if (rayBase < ray.delay) continue
+          const rt = rayBase - ray.delay
+          const rLen = Math.min(1, rt * 2.5) * ray.length * Math.max(w, h)
+          const rWidth = ray.width * Math.max(w, h)
+
+          ctx.save()
+          ctx.translate(cx, cy)
+          ctx.rotate(ray.angle)
+          ctx.globalAlpha = rayOpacity
+          const rayGrad = ctx.createLinearGradient(0, 0, rLen, 0)
+          rayGrad.addColorStop(0, 'rgba(212,184,149,0.7)')
+          rayGrad.addColorStop(0.4, 'rgba(198,107,61,0.3)')
+          rayGrad.addColorStop(1, 'rgba(198,107,61,0)')
+          ctx.fillStyle = rayGrad
+          ctx.beginPath()
+          ctx.moveTo(0, -rWidth / 2)
+          ctx.lineTo(rLen, -rWidth / 5)
+          ctx.lineTo(rLen, rWidth / 5)
+          ctx.lineTo(0, rWidth / 2)
+          ctx.closePath()
+          ctx.fill()
+          ctx.restore()
+        }
       }
     }
 
-    // Shockwave ring 1
-    if (t < 1.2) {
-      const swR = t * 750
-      const swO = Math.max(0, 0.4 - t * 0.4)
+    // === SHOCKWAVE RINGS ===
+    if (t < 1.3) {
+      const swR = t * 700
+      const swO = Math.max(0, 0.45 - t * 0.4)
       ctx.beginPath()
       ctx.arc(cx, cy, swR, 0, Math.PI * 2)
       ctx.strokeStyle = `rgba(198,107,61,${swO})`
       ctx.lineWidth = 2.5
       ctx.stroke()
     }
-
-    // Shockwave ring 2 (delayed)
-    if (t > 0.15 && t < 1.35) {
-      const st2 = t - 0.15
-      const swR2 = st2 * 650
-      const swO2 = Math.max(0, 0.25 - st2 * 0.22)
+    if (t > 0.18 && t < 1.5) {
+      const st2 = t - 0.18
+      const swR2 = st2 * 550
+      const swO2 = Math.max(0, 0.25 - st2 * 0.2)
       ctx.beginPath()
       ctx.arc(cx, cy, swR2, 0, Math.PI * 2)
       ctx.strokeStyle = `rgba(212,184,149,${swO2})`
@@ -236,20 +341,111 @@ function startScatter() {
       ctx.stroke()
     }
 
-    // Central flash (brief bright pulse)
-    if (t < 0.3) {
-      const flashO = Math.max(0, 0.25 - t * 0.9)
-      const flashR = t * 400
-      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, flashR)
-      grad.addColorStop(0, `rgba(212,184,149,${flashO})`)
-      grad.addColorStop(1, 'rgba(212,184,149,0)')
-      ctx.fillStyle = grad
-      ctx.fillRect(0, 0, w, h)
+    // === MAIN PARTICLES ===
+    for (const p of particles) {
+      if (t < p.delay) continue
+      const pt = t - p.delay
+      const px = p.x + p.vx * pt
+      const py = p.y + p.vy * pt + 0.5 * p.grav * pt * pt
+      const opacity = Math.max(0, 1 - pt * 1.3)
+
+      if (opacity < 0.01) continue
+      anyVisible = true
+
+      ctx.save()
+      ctx.translate(px, py)
+      ctx.rotate(p.rotation + p.rotSpeed * pt)
+      ctx.globalAlpha = opacity
+      ctx.fillStyle = p.color
+
+      if (p.shape === 'circle') {
+        ctx.shadowColor = p.color
+        ctx.shadowBlur = 10
+        ctx.beginPath()
+        ctx.arc(0, 0, p.size, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.shadowBlur = 0
+      } else if (p.shape === 'diamond') {
+        ctx.shadowColor = '#E8DCC7'
+        ctx.shadowBlur = 6
+        ctx.beginPath()
+        ctx.moveTo(0, -p.size)
+        ctx.lineTo(p.size * 0.6, 0)
+        ctx.lineTo(0, p.size)
+        ctx.lineTo(-p.size * 0.6, 0)
+        ctx.closePath()
+        ctx.fill()
+        ctx.shadowBlur = 0
+      } else if (p.shape === 'dot') {
+        ctx.beginPath()
+        ctx.arc(0, 0, p.size, 0, Math.PI * 2)
+        ctx.fill()
+      } else {
+        // Fragment
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7)
+      }
+      ctx.restore()
+    }
+
+    // === SPARKS ===
+    for (const s of sparks) {
+      if (t < s.delay) continue
+      const st = t - s.delay
+      const sx = s.x + s.vx * st
+      const sy = s.y + s.vy * st + 0.5 * s.grav * st * st
+      const sOpacity = Math.max(0, 0.9 - st * 2.8)
+
+      if (sOpacity > 0.01) {
+        anyVisible = true
+        ctx.globalAlpha = sOpacity
+        ctx.fillStyle = s.color
+        ctx.shadowColor = s.color
+        ctx.shadowBlur = 12
+        ctx.beginPath()
+        ctx.arc(sx, sy, s.size, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.shadowBlur = 0
+      }
+    }
+
+    // === SEAM SPARKLES ===
+    if (t < 0.9) {
+      for (const ss of seamSparkles) {
+        if (t < ss.delay) continue
+        const sst = t - ss.delay
+        const ssOpacity = Math.max(0, (1 - sst / ss.life)) * 0.9
+        const sx = cx + Math.sin(ss.y * 0.01 + t * 4) * (20 + sst * ss.drift)
+        const sy = ss.y - sst * 30
+
+        if (ssOpacity > 0.01) {
+          ctx.globalAlpha = ssOpacity
+          ctx.fillStyle = '#D4B895'
+          ctx.shadowColor = '#C66B3D'
+          ctx.shadowBlur = 8
+          // Draw a 4-pointed star
+          const s = ss.size
+          ctx.beginPath()
+          ctx.moveTo(sx, sy - s * 1.5)
+          ctx.lineTo(sx + s * 0.4, sy)
+          ctx.lineTo(sx, sy + s * 1.5)
+          ctx.lineTo(sx - s * 0.4, sy)
+          ctx.closePath()
+          ctx.fill()
+          ctx.beginPath()
+          ctx.moveTo(sx - s * 1.5, sy)
+          ctx.lineTo(sx, sy + s * 0.4)
+          ctx.lineTo(sx + s * 1.5, sy)
+          ctx.lineTo(sx, sy - s * 0.4)
+          ctx.closePath()
+          ctx.fill()
+          ctx.shadowBlur = 0
+        }
+      }
     }
 
     ctx.globalAlpha = 1
 
-    if (anyVisible && t < 3) {
+    if (anyVisible && t < 3.5) {
       animId = requestAnimationFrame(animate)
     } else {
       visible.value = false
@@ -271,21 +467,18 @@ onUnmounted(() => {
   z-index: 9999;
 }
 
-/* Overlay background */
 .intro-overlay {
   position: absolute;
   inset: 0;
   background: #1F1C18;
 }
 
-/* Canvas */
-.scatter-canvas {
+.effect-canvas {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-/* Center content */
 .intro-center {
   position: absolute;
   inset: 0;
@@ -294,15 +487,15 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1.5rem 1.5rem;
+  gap: 0.8rem;
+  padding: 3rem 2rem;
   overflow: visible;
-  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
 }
 .intro-center.center-exit {
   opacity: 0;
-  transform: scale(0.9);
-  filter: blur(8px);
+  transform: scale(0.92);
+  filter: blur(10px);
   pointer-events: none;
 }
 
@@ -327,8 +520,8 @@ onUnmounted(() => {
   height: 110px;
   flex-shrink: 0;
   filter: drop-shadow(0 0 40px rgba(198,107,61,0.4));
-  animation: logoIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.2s both,
-             logoFloat 4s ease-in-out 1s infinite;
+  animation: logoIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both,
+             logoFloat 4s ease-in-out 0.8s infinite;
 }
 .intro-logo svg { width: 100%; height: 100%; }
 
@@ -344,7 +537,7 @@ onUnmounted(() => {
 /* Title */
 .intro-title {
   display: flex;
-  gap: 0.1em;
+  gap: 0.12em;
   margin: 0;
   line-height: 1.4;
 }
@@ -357,12 +550,12 @@ onUnmounted(() => {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: charIn 0.55s cubic-bezier(0.34,1.56,0.64,1) both;
+  animation: charIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
 }
-.c1 { animation-delay: 0.5s; }
-.c2 { animation-delay: 0.75s; }
-.c3 { animation-delay: 1.0s; }
-.c4 { animation-delay: 1.25s; }
+.c1 { animation-delay: 0.3s; }
+.c2 { animation-delay: 0.42s; }
+.c3 { animation-delay: 0.54s; }
+.c4 { animation-delay: 0.66s; }
 
 @keyframes charIn {
   0%   { opacity: 0; transform: translateY(30px) scale(0.3); filter: blur(6px); }
@@ -379,7 +572,7 @@ onUnmounted(() => {
   margin: 0;
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeUp 0.5s ease 1.7s both;
+  animation: fadeUp 0.45s ease 0.9s both;
 }
 
 /* Divider */
@@ -387,7 +580,7 @@ onUnmounted(() => {
   width: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(198,107,61,0.5), transparent);
-  animation: lineGrow 0.6s ease 2s both;
+  animation: lineGrow 0.5s ease 1.1s both;
 }
 
 @keyframes fadeUp {
@@ -400,7 +593,7 @@ onUnmounted(() => {
 /* Button */
 .enter-btn {
   position: relative;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   padding: 0.9rem 2.8rem;
   background: transparent;
   border: 2px solid rgba(198,107,61,0.4);
@@ -416,7 +609,7 @@ onUnmounted(() => {
   gap: 0.8rem;
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeUp 0.6s cubic-bezier(0.34,1.56,0.64,1) 2.3s both;
+  animation: fadeUp 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.3s both;
   transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 .enter-btn:hover {
@@ -447,7 +640,7 @@ onUnmounted(() => {
   .intro-sub { font-size: 0.85rem; }
   .enter-btn { padding: 0.8rem 2.2rem; font-size: 1rem; }
   .spotlight { width: 350px; height: 350px; }
-  .intro-center { gap: 0.5rem; padding: 1rem; }
+  .intro-center { gap: 0.6rem; padding: 2rem 1.5rem; }
 }
 @media (max-width: 480px) {
   .intro-logo { width: 76px; height: 76px; }
@@ -455,6 +648,6 @@ onUnmounted(() => {
   .intro-sub { font-size: 0.75rem; letter-spacing: 0.3em; }
   .enter-btn { padding: 0.7rem 1.8rem; font-size: 0.9rem; letter-spacing: 0.2em; }
   .spotlight { width: 280px; height: 280px; }
-  .intro-center { gap: 0.4rem; padding: 0.75rem; }
+  .intro-center { gap: 0.5rem; padding: 1.5rem 1rem; }
 }
 </style>
