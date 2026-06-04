@@ -5,6 +5,7 @@ tags:
   - TypeScript
   - 前端
 description: TypeScript基础类型、接口、泛型等核心概念详解
+category: 前端开发
 ---
 
 # TypeScript 入门指南

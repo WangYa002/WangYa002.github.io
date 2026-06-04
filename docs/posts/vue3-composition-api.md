@@ -5,6 +5,7 @@ tags:
   - Vue
   - 前端
 description: 深入理解Vue3组合式API的核心概念和使用方法
+category: 前端开发
 ---
 
 # Vue3 组合式API完全指南

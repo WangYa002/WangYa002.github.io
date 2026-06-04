@@ -6,6 +6,7 @@ tags:
   - 后端
   - Express
 description: 使用Node.js和Express快速搭建RESTful API，包括路由、中间件、错误处理
+category: 后端开发
 ---
 
 # Node.js + Express 快速构建REST API

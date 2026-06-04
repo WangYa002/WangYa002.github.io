@@ -5,6 +5,7 @@ tags:
   - Docker
   - DevOps
 description: Docker基础概念、常用命令，以及如何用Docker部署应用
+category: 工具与部署
 ---
 
 # Docker 入门教程

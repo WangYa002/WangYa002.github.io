@@ -5,6 +5,7 @@ tags:
   - Git
   - 工具
 description: 日常开发中常用的Git命令，涵盖分支管理、版本控制、协作等场景
+category: 工具与部署
 ---
 
 # Git 常用命令速查表

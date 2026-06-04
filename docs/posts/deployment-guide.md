@@ -5,6 +5,7 @@ tags:
   - 部署
   - DevOps
 description: 如何将前后端分离的项目部署到服务器，包括Nginx配置和反向代理
+category: 工具与部署
 ---
 
 # 前后端分离项目部署指南

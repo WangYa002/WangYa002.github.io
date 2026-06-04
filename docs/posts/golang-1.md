@@ -5,6 +5,7 @@ tags:
   - GOlang&C++
   - 后端
 description: 从零搭建Go开发环境，快速入门Go语言编程
+category: GOlang&C++
 ---
 
 # Go语言环境搭建与快速入门

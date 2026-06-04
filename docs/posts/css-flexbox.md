@@ -5,6 +5,7 @@ tags:
   - CSS
   - 前端
 description: 详解Flexbox布局的核心概念，包括容器属性和项目属性
+category: 前端开发
 ---
 
 # CSS Flexbox 布局详解
