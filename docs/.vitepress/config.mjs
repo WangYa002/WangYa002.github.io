@@ -1,5 +1,12 @@
 // docs/.vitepress/config.mjs
-export default {
+import { defineConfig } from 'vitepress'
+import { createRequire } from 'node:module'
+
+// 在 ESM 配置中引入 CommonJS 工具，复用 scan-posts 的分类逻辑
+const require = createRequire(import.meta.url)
+const { generateSidebar } = require('./utils/scan-posts.cjs')
+
+export default defineConfig({
   // 网站标题与描述
   title: "汪洋恣意-信一的博客",
   description: "分享前端、后端开发经验和编程心得的个人技术博客",
@@ -64,63 +71,9 @@ export default {
       label: '目录'
     },
 
-    // 文章页侧边栏
+    // 文章页侧边栏（由 scan-posts.cjs 按 category 自动分组，新增文章无需手改）
     sidebar: {
-      '/posts/': [
-        {
-          text: '前端开发',
-          collapsed: false,
-          items: [
-            { text: 'Vue3 组合式API完全指南', link: '/posts/vue3-composition-api' },
-            { text: 'TypeScript 入门指南', link: '/posts/typescript-basics' },
-            { text: 'CSS Flexbox 布局详解', link: '/posts/css-flexbox' }
-          ]
-        },
-        {
-          text: '后端开发',
-          collapsed: false,
-          items: [
-            { text: 'Node.js + Express 快速构建REST API', link: '/posts/nodejs-express-api' }
-          ]
-        },
-        {
-          text: '工具与部署',
-          collapsed: false,
-          items: [
-            { text: 'Git 常用命令速查表', link: '/posts/git-commands' },
-            { text: 'Docker 入门教程', link: '/posts/docker-basics' },
-            { text: '前后端分离项目部署指南', link: '/posts/deployment-guide' }
-          ]
-        },
-        {
-          text: '八股文',
-          collapsed: false,
-          items: [
-            { text: 'HTTP与TCP', link: '/posts/八股文-1' }
-          ]
-        },
-        {
-          text: '算法',
-          collapsed: false,
-          items: [
-            { text: '两数之和', link: '/posts/算法-1' }
-          ]
-        },
-        {
-          text: '项目经历',
-          collapsed: false,
-          items: [
-            { text: '项目介绍', link: '/posts/aas-1' }
-          ]
-        },
-        {
-          text: 'GOlang&C++',
-          collapsed: false,
-          items: [
-            { text: '环境搭建', link: '/posts/golang-1' }
-          ]
-        }
-      ]
+      '/posts/': generateSidebar(),
     },
 
     // 标签页侧边栏
@@ -192,4 +145,4 @@ export default {
 
   // 构建后清理
   cleanUrls: false
-}
+})
