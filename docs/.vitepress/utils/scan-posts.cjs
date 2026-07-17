@@ -8,32 +8,40 @@ const BASE_URL = 'https://WangYa002.github.io'
 
 // 分类排序与展示信息（icon / 中文名）
 const CATEGORY_ORDER = {
-  '前端开发': 1,
+  'C++ 实战': 1,
   '后端开发': 2,
-  '工具与部署': 3,
-  '八股文': 4,
-  '算法': 5,
+  '网络编程': 3,
+  '算法': 4,
+  '八股文': 5,
   '项目经历': 6,
-  'GOlang&C++': 7,
-  '其他': 8,
+  '工具与部署': 7,
+  'GOlang&C++': 8,
+  '前端开发': 9,
+  '其他': 99,
 }
 
 // 分类 → emoji 图标映射
 const CATEGORY_ICON = {
-  '前端开发': '🚀',
+  'C++ 实战': '🔵',
   '后端开发': '⚙️',
+  '网络编程': '🌐',
   '工具与部署': '🛠️',
   '八股文': '📚',
   '算法': '🧮',
   '项目经历': '🚀',
   'GOlang&C++': '🐹',
+  '前端开发': '🎨',
   '其他': '📦',
 }
 
 // tag slug → { name, icon } 映射
 const TAG_META = {
-  frontend: { name: '前端', icon: '🌐' },
+  cpp: { name: 'C++', icon: '🔵' },
   backend: { name: '后端', icon: '🖥️' },
+  network: { name: '网络编程', icon: '🌐' },
+  linux: { name: 'Linux', icon: '🐧' },
+  leetcode: { name: 'LeetCode', icon: '💻' },
+  frontend: { name: '前端', icon: '🌐' },
   vue: { name: 'Vue', icon: '💚' },
   typescript: { name: 'TypeScript', icon: '🔷' },
   css: { name: 'CSS', icon: '🎨' },
@@ -50,8 +58,13 @@ const TAG_META = {
 
 // tag 中文名/别名 → slug 映射（slug 必须对应 docs/tags/ 下真实存在的目录）
 const TAG_ALIAS = {
-  '前端': 'frontend',
+  'C++': 'cpp',
+  'cpp': 'cpp',
   '后端': 'backend',
+  '网络编程': 'network',
+  'Linux': 'linux',
+  'LeetCode': 'leetcode',
+  '前端': 'frontend',
   'Vue': 'vue',
   'TypeScript': 'typescript',
   'CSS': 'css',

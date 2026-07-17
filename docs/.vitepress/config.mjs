@@ -8,8 +8,8 @@ const { generateSidebar } = require('./utils/scan-posts.cjs')
 
 export default defineConfig({
   // 网站标题与描述
-  title: "汪洋恣意-信一的博客",
-  description: "分享前端、后端开发经验和编程心得的个人技术博客",
+  title: "汪洋恣意 · C++ 后端开发之路",
+  description: "聚焦 C++ 后端 / Linux 系统编程 / 高性能网络编程 / 网络安全流量审计，记录实习实战与技术深度挖掘",
   lang: "zh-CN",
 
   // GitHub Pages 必须配置为 /
@@ -22,9 +22,9 @@ export default defineConfig({
     // RSS 订阅
     ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
-    ['meta', { name: 'keywords', content: '技术博客, 前端开发, 后端开发, Vue, JavaScript' }],
+    ['meta', { name: 'keywords', content: 'C++ 后端, Linux 系统编程, epoll, Reactor, 无锁队列, CRTP, 流量审计, 高性能网络编程, ai_aas, 共享单车, LeetCode 题解, 现代 C++' }],
     // 作者
-    ['meta', { name: 'author', content: '汪洋恣意' }],
+    ['meta', { name: 'author', content: '胡汪洋（汪洋恣意）' }],
     // 移动端视口
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     // 主题色 - Terracotta (Organic anchor)
@@ -81,12 +81,14 @@ export default defineConfig({
       {
         text: '标签分类',
         items: [
-          { text: '前端', link: '/tags/frontend/' },
+          { text: 'C++', link: '/tags/cpp/' },
           { text: '后端', link: '/tags/backend/' },
+          { text: '网络编程', link: '/tags/network/' },
+          { text: 'Linux', link: '/tags/linux/' },
           { text: '八股文', link: '/tags/interview/' },
           { text: '算法', link: '/tags/algorithm/' },
+          { text: 'LeetCode', link: '/tags/leetcode/' },
           { text: '项目经历', link: '/tags/project/' },
-          { text: 'GOlang&C++', link: '/tags/golang/' },
           { text: 'DevOps', link: '/tags/devops/' }
         ]
       }
@@ -111,8 +113,8 @@ export default defineConfig({
 
     // 页面底部信息
     footer: {
-      message: '基于 VitePress 构建',
-      copyright: 'Copyright © 2024-present 汪洋恣意'
+      message: '基于 VitePress 构建 · 聚焦 C++ 后端 / Linux 系统编程',
+      copyright: 'Copyright © 2024-present 胡汪洋（汪洋恣意）'
     },
 
     // 暗色模式切换
