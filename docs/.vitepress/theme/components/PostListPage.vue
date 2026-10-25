@@ -32,6 +32,7 @@
             v-for="post in cat.posts"
             :key="post.slug"
             :href="post.url"
+            :title="post.title"
             class="post-row"
           >
             <span class="post-icon">{{ cat.icon }}</span>

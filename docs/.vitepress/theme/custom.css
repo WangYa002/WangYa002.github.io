@@ -470,6 +470,41 @@
   border-radius: var(--radius-sm) !important;
 }
 
+/* VitePress centers the sidebar inside a 1440px layout on wide screens.
+   Keep the article navigation attached to the viewport edge instead. */
+@media (min-width: 1440px) {
+  .VPSidebar,
+  .VPNavBar.has-sidebar .title {
+    width: var(--vp-sidebar-width) !important;
+    padding-left: 24px !important;
+    padding-right: 20px !important;
+  }
+
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 0 !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 32px !important;
+  }
+
+  .VPNavBar.has-sidebar .divider {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+
+  .VPDoc.has-sidebar .container {
+    justify-content: flex-start;
+    padding-left: clamp(0px, calc(8vw - 115px), 56px);
+  }
+
+  .VPContent.has-sidebar .VPPage .posts-page {
+    margin-left: clamp(32px, calc(8vw - 115px), 56px);
+    margin-right: auto;
+  }
+}
+
 /* ============================================
    Doc Content - Readable Typography (WIDER)
    ============================================ */
@@ -562,6 +597,13 @@
   font-size: 1.05rem !important;
 }
 
+@media (min-width: 960px) {
+  .VPDoc table {
+    display: table !important;
+    overflow-wrap: anywhere;
+  }
+}
+
 .VPDoc th {
   background: var(--vp-c-brand-2) !important;
   color: #fff !important;
@@ -612,11 +654,14 @@
 
 .VPDocOutlineItem a {
   font-size: 0.95rem !important;
-  color: var(--vp-c-text-3) !important;
+  color: var(--vp-c-text-2) !important;
   transition: all 0.2s ease !important;
   padding: 0.5rem 0.875rem !important;
   border-radius: var(--radius-sm) !important;
   border-left: 2px solid transparent !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
 }
 
 .VPDocOutlineItem a:hover {
@@ -933,11 +978,12 @@
 
 .VPPage .posts-page .category-sections {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
 .VPPage .posts-page .category-block {
+  min-width: 0;
   background: var(--vp-c-bg-soft);
   border-radius: 16px;
   padding: 1.5rem;
@@ -998,9 +1044,11 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--vp-c-text-1);
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.45;
   transition: color 0.2s ease;
 }
 
@@ -1021,7 +1069,7 @@
   .VPPage .posts-page .category-sections { grid-template-columns: 1fr; gap: 1rem; }
   .VPPage .posts-page .stats-bar { gap: 1rem; padding: 1rem 1.5rem; }
   .VPPage .posts-page .stat-value { font-size: 1.25rem; }
-  .VPPage .posts-page .post-name { white-space: normal; font-size: 0.8rem; }
+  .VPPage .posts-page .post-name { font-size: 0.8rem; }
 }
 
 @media (max-width: 480px) {
