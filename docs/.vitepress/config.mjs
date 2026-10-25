@@ -8,8 +8,8 @@ const { generateSidebar } = require('./utils/scan-posts.cjs')
 
 export default defineConfig({
   // 网站标题与描述
-  title: "汪洋恣意 · C++ 后端开发之路",
-  description: "聚焦 C++ 后端 / Linux 系统编程 / 高性能网络编程 / 网络安全流量审计，记录实习实战与技术深度挖掘",
+  title: "汪洋恣意",
+  description: "致力于用 CPP 构建高性能的一切",
   lang: "zh-CN",
 
   // GitHub Pages 必须配置为 /
@@ -18,7 +18,7 @@ export default defineConfig({
   // Head 标签（SEO）
   head: [
     // SVG 图标
-    ['link', { rel: 'icon', type: 'image/png', href: '/logo2.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     // RSS 订阅
     ['link', { rel: 'alternate', type: 'application/rss+xml', title: '汪洋恣意的博客', href: '/feed.xml' }],
     // 关键词
@@ -27,8 +27,8 @@ export default defineConfig({
     ['meta', { name: 'author', content: '胡汪洋（汪洋恣意）' }],
     // 移动端视口
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-    // 主题色 - Terracotta (Organic anchor)
-    ['meta', { name: 'theme-color', content: '#C66B3D' }],
+    // 主题色 - 冷青蓝
+    ['meta', { name: 'theme-color', content: '#087F98' }],
     // Apple 图标
     ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
     // 禁止百度转码
@@ -54,7 +54,7 @@ export default defineConfig({
 
     // 社交链接
     socialLinks: [
-      { icon: "github", link: "https://github.com/WangYa002" }
+      { icon: "github", link: "https://github.com/WangYa002/WangYa002.github.io" }
     ],
 
     // 搜索配置（可选：本地搜索或 Algolia）

@@ -3,8 +3,7 @@ layout: home
 
 hero:
   name: "汪洋恣意"
-  text: "C++ 后端开发之路"
-  tagline: "重庆邮电大学软件工程硕士 · 2027 届校招候选人 · 聚焦 C++ 后端 / Linux 系统编程 / 高性能网络编程 / 网络安全流量审计"
+  tagline: "致力于用 CPP 构建高性能的一切"
   image: false
   actions:
     - theme: brand

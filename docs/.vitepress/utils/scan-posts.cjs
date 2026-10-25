@@ -132,7 +132,7 @@ function generateSidebar() {
     .sort(([a], [b]) => (CATEGORY_ORDER[a] ?? 99) - (CATEGORY_ORDER[b] ?? 99))
     .map(([cat, items]) => ({
       text: cat,
-      collapsed: false,
+      collapsed: true,
       items: items.map(post => ({
         text: post.title,
         link: `/posts/${post.slug}`,

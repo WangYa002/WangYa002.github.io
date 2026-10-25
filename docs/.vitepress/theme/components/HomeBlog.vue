@@ -91,17 +91,17 @@ const recent = posts.slice(0, props.limit)
 
 // 分类配色：与原 index.md 的 getCategoryColor 保持一致
 const CATEGORY_COLORS = {
-  '前端开发': '#C66B3D',
-  '后端开发': '#606C38',
-  '工具与部署': '#8B8279',
-  'DevOps': '#B08B6E',
-  '八股文': '#B08B6E',
-  '算法': '#606C38',
-  '项目经历': '#C66B3D',
-  'GOlang&C++': '#606C38',
-  '其他': '#8B8279',
+  '前端开发': '#087F98',
+  '后端开发': '#2C8B93',
+  '工具与部署': '#617D8D',
+  'DevOps': '#166995',
+  '八股文': '#166995',
+  '算法': '#2C8B93',
+  '项目经历': '#087F98',
+  'GOlang&C++': '#2C8B93',
+  '其他': '#617D8D',
 }
 function categoryColor(cat) {
-  return CATEGORY_COLORS[cat] || '#C66B3D'
+  return CATEGORY_COLORS[cat] || '#087F98'
 }
 </script>

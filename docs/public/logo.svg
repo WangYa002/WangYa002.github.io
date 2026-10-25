@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <!-- 主背景渐变 - 优雅的暖色调 -->
+    <!-- 冷调背景 -->
     <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#F5EDE3"/>
-      <stop offset="70%" stop-color="#E8DCC7"/>
-      <stop offset="100%" stop-color="#D4B895"/>
+      <stop offset="0%" stop-color="#F3F8FA"/>
+      <stop offset="70%" stop-color="#DCECF1"/>
+      <stop offset="100%" stop-color="#9EC8D3"/>
     </radialGradient>
 
-    <!-- 字母渐变 - 陶土到森林绿 -->
+    <!-- 蓝青色字母渐变 -->
     <linearGradient id="letterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#C66B3D"/>
-      <stop offset="50%" stop-color="#8B5E3C"/>
-      <stop offset="100%" stop-color="#606C38"/>
+      <stop offset="0%" stop-color="#087F98"/>
+      <stop offset="50%" stop-color="#166995"/>
+      <stop offset="100%" stop-color="#2C8B93"/>
     </linearGradient>
 
     <!-- 光晕效果 -->
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feFlood flood-color="#C66B3D" flood-opacity="0.4"/>
+      <feFlood flood-color="#087F98" flood-opacity="0.4"/>
       <feComposite in2="blur" operator="in"/>
       <feMerge>
         <feMergeNode/>
@@ -27,7 +27,7 @@
 
     <!-- 内阴影 -->
     <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#2D2A26" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#102B3A" flood-opacity="0.12"/>
     </filter>
 
     <!-- 点击涟漪效果 -->
@@ -54,28 +54,6 @@
       .logo-group:hover .logo-ring { opacity: 0.6; transform: scale(1.05) rotate(15deg); }
       .logo-group:hover .logo-dot { transform: scale(1.3); }
 
-      /* 装饰环旋转动画 */
-      @keyframes ringRotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-      @keyframes ringRotateReverse {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
-      }
-      .ring-outer { animation: ringRotate 20s linear infinite; transform-origin: center; }
-      .ring-inner { animation: ringRotateReverse 15s linear infinite; transform-origin: center; }
-
-      /* 装饰点脉动 */
-      @keyframes dotPulse {
-        0%, 100% { transform: scale(1); opacity: 0.5; }
-        50% { transform: scale(1.2); opacity: 0.8; }
-      }
-      .dot-1 { animation: dotPulse 2s ease-in-out infinite; }
-      .dot-2 { animation: dotPulse 2s ease-in-out infinite 0.5s; }
-      .dot-3 { animation: dotPulse 2s ease-in-out infinite 1s; }
-      .dot-4 { animation: dotPulse 2s ease-in-out infinite 1.5s; }
-
       /* 点击涟漪 */
       @keyframes rippleEffect {
         0% { transform: scale(0); opacity: 0.8; }
@@ -94,20 +72,20 @@
 
   <g class="logo-group" style="cursor: pointer;">
     <!-- 点击涟漪层（点击时触发） -->
-    <circle class="ripple-circle" id="ripple1" cx="100" cy="100" r="90" fill="none" stroke="#C66B3D" stroke-width="2" opacity="0"/>
-    <circle class="ripple-circle" id="ripple2" cx="100" cy="100" r="90" fill="none" stroke="#606C38" stroke-width="1.5" opacity="0"/>
+    <circle class="ripple-circle" id="ripple1" cx="100" cy="100" r="90" fill="none" stroke="#087F98" stroke-width="2" opacity="0"/>
+    <circle class="ripple-circle" id="ripple2" cx="100" cy="100" r="90" fill="none" stroke="#2C8B93" stroke-width="1.5" opacity="0"/>
 
     <!-- 背景圆形 -->
     <circle class="logo-bg" cx="100" cy="100" r="90" fill="url(#bgGrad)"/>
 
     <!-- 外装饰环 -->
-    <circle class="logo-ring ring-outer" cx="100" cy="100" r="88" fill="none" stroke="#C66B3D" stroke-width="0.5" stroke-dasharray="8 4" opacity="0.4"/>
+    <circle class="logo-ring ring-outer" cx="100" cy="100" r="88" fill="none" stroke="#087F98" stroke-width="0.5" stroke-dasharray="8 4" opacity="0.4"/>
 
     <!-- 中间装饰环 -->
-    <circle class="logo-ring ring-inner" cx="100" cy="100" r="78" fill="none" stroke="#606C38" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.35"/>
+    <circle class="logo-ring ring-inner" cx="100" cy="100" r="78" fill="none" stroke="#2C8B93" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.35"/>
 
     <!-- 内圈装饰线 -->
-    <circle class="logo-circle" cx="100" cy="100" r="68" fill="none" stroke="#B08B6E" stroke-width="0.5" opacity="0.3"/>
+    <circle class="logo-circle" cx="100" cy="100" r="68" fill="none" stroke="#166995" stroke-width="0.5" opacity="0.3"/>
 
     <!-- 字母 W - 使用路径获得更精细的控制 -->
     <g class="logo-letter" filter="url(#innerShadow)">
@@ -120,13 +98,13 @@
     </g>
 
     <!-- 底部装饰线 -->
-    <line class="logo-circle" x1="65" y1="150" x2="135" y2="150" stroke="#606C38" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line class="logo-circle" x1="65" y1="150" x2="135" y2="150" stroke="#2C8B93" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
 
     <!-- 装饰点 -->
-    <circle class="logo-dot dot-1" cx="30" cy="30" r="5" fill="#C66B3D" opacity="0.5"/>
-    <circle class="logo-dot dot-2" cx="170" cy="30" r="4" fill="#606C38" opacity="0.4"/>
-    <circle class="logo-dot dot-3" cx="30" cy="170" r="4" fill="#606C38" opacity="0.4"/>
-    <circle class="logo-dot dot-4" cx="170" cy="170" r="5" fill="#C66B3D" opacity="0.5"/>
+    <circle class="logo-dot dot-1" cx="30" cy="30" r="5" fill="#087F98" opacity="0.5"/>
+    <circle class="logo-dot dot-2" cx="170" cy="30" r="4" fill="#2C8B93" opacity="0.4"/>
+    <circle class="logo-dot dot-3" cx="30" cy="170" r="4" fill="#2C8B93" opacity="0.4"/>
+    <circle class="logo-dot dot-4" cx="170" cy="170" r="5" fill="#087F98" opacity="0.5"/>
   </g>
 
   <script type="text/javascript"><![CDATA[
@@ -146,7 +124,7 @@
         ripples.forEach(function(ripple, i) {
           ripple.classList.remove('ripple-animate');
           ripple.style.opacity = '0.6';
-          ripple.style.stroke = i === 0 ? '#C66B3D' : '#606C38';
+          ripple.style.stroke = i === 0 ? '#087F98' : '#2C8B93';
           void ripple.offsetWidth;
           ripple.style.animationDelay = (i * 0.15) + 's';
           ripple.classList.add('ripple-animate');
