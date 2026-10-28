@@ -13,14 +13,32 @@
 </template>
 
 <script setup>
-import { nextTick, onMounted, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import Busuanzi from './Busuanzi.vue'
 import Logo from './Logo.vue'
 import IntroAnimation from './IntroAnimation.vue'
+import { getChinaTimeTheme } from '../chinaTimeTheme.mjs'
 
 const route = useRoute()
+const { isDark } = useData()
+let lastScheduledTheme
+let themeCheckInterval
+
+function updateBrowserThemeColor() {
+  document.querySelector('meta[name="theme-color"]')?.setAttribute(
+    'content', isDark.value ? '#0B1824' : '#F3F8FA'
+  )
+}
+
+function syncThemeAtBoundary() {
+  const scheduledTheme = getChinaTimeTheme()
+  if (scheduledTheme !== lastScheduledTheme) {
+    lastScheduledTheme = scheduledTheme
+    isDark.value = scheduledTheme === 'dark'
+  }
+}
 
 function collapseActiveSidebarGroup() {
   // VitePress automatically opens the group containing the current article.
@@ -33,8 +51,20 @@ function collapseActiveSidebarGroup() {
   })
 }
 
-onMounted(collapseActiveSidebarGroup)
+onMounted(() => {
+  collapseActiveSidebarGroup()
+  lastScheduledTheme = getChinaTimeTheme()
+  isDark.value = lastScheduledTheme === 'dark'
+  updateBrowserThemeColor()
+  themeCheckInterval = window.setInterval(syncThemeAtBoundary, 30_000)
+  document.addEventListener('visibilitychange', syncThemeAtBoundary)
+})
+onUnmounted(() => {
+  window.clearInterval(themeCheckInterval)
+  document.removeEventListener('visibilitychange', syncThemeAtBoundary)
+})
 watch(() => route.path, collapseActiveSidebarGroup)
+watch(isDark, updateBrowserThemeColor)
 </script>
 
 <style scoped>

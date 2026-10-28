@@ -1,6 +1,7 @@
 // docs/.vitepress/config.mjs
 import { defineConfig } from 'vitepress'
 import { createRequire } from 'node:module'
+import { createChinaThemeBootstrapScript } from './theme/chinaTimeTheme.mjs'
 
 // 在 ESM 配置中引入 CommonJS 工具，复用 scan-posts 的分类逻辑
 const require = createRequire(import.meta.url)
@@ -27,8 +28,10 @@ export default defineConfig({
     ['meta', { name: 'author', content: '胡汪洋（汪洋恣意）' }],
     // 移动端视口
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-    // 主题色 - 冷青蓝
-    ['meta', { name: 'theme-color', content: '#087F98' }],
+    // 浏览器主题色会随页面背景同步切换
+    ['meta', { name: 'theme-color', content: '#F3F8FA' }],
+    // 在 VitePress 初始化主题前按北京时间设置首屏颜色，避免闪色。
+    ['script', { id: 'china-time-theme' }, createChinaThemeBootstrapScript()],
     // Apple 图标
     ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
     // 禁止百度转码
