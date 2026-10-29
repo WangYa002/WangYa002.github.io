@@ -6,7 +6,7 @@
         <span class="header-icon">📝</span>
       </div>
       <h1 class="header-title">文章列表</h1>
-      <p class="header-subtitle">涵盖前端、后端、八股文、算法、项目经历、GOlang&C++等技术领域</p>
+      <p class="header-subtitle">涵盖前端、后端、八股文、面经、算法、项目经历、GOlang&C++等技术领域</p>
     </div>
 
     <!-- 统计条：自动计算 -->

@@ -13,10 +13,11 @@ const CATEGORY_ORDER = {
   '网络编程': 3,
   '算法': 4,
   '八股文': 5,
-  '项目经历': 6,
-  '工具与部署': 7,
-  'GOlang&C++': 8,
-  '前端开发': 9,
+  '面经': 6,
+  '项目经历': 7,
+  '工具与部署': 8,
+  'GOlang&C++': 9,
+  '前端开发': 10,
   '其他': 99,
 }
 
@@ -27,6 +28,7 @@ const CATEGORY_ICON = {
   '网络编程': '🌐',
   '工具与部署': '🛠️',
   '八股文': '📚',
+  '面经': '📝',
   '算法': '🧮',
   '项目经历': '🚀',
   'GOlang&C++': '🐹',
@@ -49,11 +51,11 @@ const TAG_META = {
   git: { name: 'Git', icon: '📦' },
   docker: { name: 'Docker', icon: '🐳' },
   devops: { name: 'DevOps', icon: '🔄' },
-  interview: { name: '八股文', icon: '📚' },
+  interview: { name: '面经', icon: '📝' },
+  baguwen: { name: '八股文', icon: '📚' },
   algorithm: { name: '算法', icon: '🧮' },
   project: { name: '项目经历', icon: '🚀' },
   golang: { name: 'GOlang&C++', icon: '🐹' },
-  'Golang&C++': { name: 'GOlang&C++', icon: '🐹' },
 }
 
 // tag 中文名/别名 → slug 映射（slug 必须对应 docs/tags/ 下真实存在的目录）
@@ -72,11 +74,11 @@ const TAG_ALIAS = {
   'Git': 'git',
   'Docker': 'docker',
   'DevOps': 'devops',
-  '八股文': 'interview',
+  '八股文': 'baguwen',
+  '面经': 'interview',
   '算法': 'algorithm',
   '项目经历': 'project',
   'GOlang&C++': 'golang',
-  'Golang&C++': 'golang',
 }
 
 /**

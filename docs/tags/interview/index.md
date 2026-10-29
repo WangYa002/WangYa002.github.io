@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 八股文
-tag: 八股文
+title: 面经
+tag: 面经
 ---
 
-<TagDetailPage :tag="'八股文'" />
+<TagDetailPage :tag="'面经'" />
